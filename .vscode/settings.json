@@ -1,0 +1,6 @@
+{
+    "nixEnvPicker.envFile": "${workspaceFolder}${/}flake.nix",
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "python-envs.pythonProjects": [],
+    "python.pythonPath": "/nix/store/f7z935kv3nyylfq8lhwkpl6rmbcjd79q-python3-3.11.5/bin/python",
+}
