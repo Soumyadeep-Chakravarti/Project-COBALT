@@ -1,7 +1,3 @@
-Got it. Stripping the roleplay, tightening the technical focus, and expanding the execution and interop sections. This is the 5-section architecture breakdown for **COBALT**, emphasizing how the Java-based **Nexus** actually handles the heavy lifting between the brain and the metal.
-
----
-
 # [ PROJECT COBALT ]
 ### **"ABSTRACTION IS A WEAPON. USE IT."**
 
