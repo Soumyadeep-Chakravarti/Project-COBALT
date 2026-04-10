@@ -5,6 +5,32 @@ The objective is a synthetic infrastructure counterpart designed to serve as the
 
 ---
 
+## 📡 Engineering Logs
+The development journey, documented in real-time:
+- **[Log 0x00: Genesis](./engineering-logs/LOG_0x00_GENESIS.md)** — The thesis, the anatomy, the blueprint
+- [Log 0x01: The Handshake](./engineering-logs/LOG_0x01_HANDSHAKE.md) *(coming soon)* — Java 25 FFM API meets Unix Domain Sockets
+- [Log 0x02: The Stabilizer](./engineering-logs/LOG_0x02_STABILIZER.md) *(coming soon)* — PyProbe and the war against the GIL
+
+---
+
+## 📁 Repository Structure
+```text
+/project-cobalt
+├── /nexus              # L03: Java 25 Panama Bridge (The Interop Spine)
+├── /specialists        # Language Specialists
+│   ├── /rust-guardian  # L04: Integrity & Safety
+│   ├── /c-mechanic     # L01: GPU/Wayland Metal
+│   ├── /py-researcher  # L05: AI Logic (PyProbe-powered)
+│   └── /julia-scientist# L06: Spatial Math
+├── /orchestrator       # L06: Specialist Selector
+├── /docs
+│   ├── /engineering-logs  # The development journal
+│   └── /contracts      # CIS Standard & .proto files
+└── /ar-os-substrate    # OpenXR/Wayland AR Layer
+```
+
+---
+
 ## 1. THE SPECIALIST HIVEMIND
 Architecture is a meritocracy. In COBALT, languages are chosen solely for their domain-specific superpowers.
 
