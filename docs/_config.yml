@@ -1,0 +1,25 @@
+title: PROJECT COBALT
+description: "Synthetic Infrastructure Architecture | L11-L01 Polyglot Stack"
+theme: jekyll-theme-chirpy
+remote_theme: cotes2020/jekyll-theme-chirpy
+
+author: Soumyadeep Chakravarti
+github_username: Soumyadeep-Chakravarti
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+permalink: /:year/:month/:day/:title/
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+mermaid: true
+
+defaults_scheme: dark
+
+timezone: Asia/Kolkata
