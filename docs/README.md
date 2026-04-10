@@ -1,7 +1,7 @@
 # [ PROJECT COBALT ]
 ### **"ABSTRACTION IS A WEAPON. USE IT."**
 
-The objective is a synthetic infrastructure counterpart that inhabits the hardware. One interface, nine specialized languages, and a complete removal of the friction between high-level intent and bare-metal execution.
+The objective is a synthetic infrastructure counterpart designed to serve as the **cognitive core of a custom AR-based Operating System**. One interface, nine specialized languages, and a complete removal of the friction between human intent and bare-metal execution.
 
 ---
 
@@ -23,7 +23,7 @@ Architecture is a meritocracy. In COBALT, languages are chosen solely for their 
 ## 2. THE 11-LAYER ANATOMY
 A vertical chain of command structured to compartmentalize functional responsibility from the persona down to the hardware.
 
-* **L11 - L10 [CONTROL]:** Governance (Cost/Compliance) and Persona (Intent/Affective Engine).
+* **L11 - L10 [CONTROL]:** Governance (Cost/Compliance) and Persona (Spatial Intent/Affective Engine).
 * **L09 - L07 [BRAIN]:** Evolution (Self-healing), Temporal (History/Rollback), and Translator (Planning).
 * **L06 - L05 [ORCHESTRATION]:** Polyglot Selector (Language choice) and Model Synthesis (Config Graph).
 * **L04 - L01 [SUBSTRATE]:** Guardian (Integrity), Nexus (Interop), Foundation (I/O), and Metal (Kernel/GPU).
@@ -34,17 +34,17 @@ A vertical chain of command structured to compartmentalize functional responsibi
 **Nexus** is the foundational pillar implemented in **Java**. While other layers handle the "thinking," Nexus handles the **mechanical reality** of cross-language execution.
 
 * **State Persistence:** Unlike ephemeral scripts, Nexus maintains a persistent JVM-based state machine that tracks the health of all external language processes.
-* **Environment Provisioning:** It dynamically generates the necessary environment variables, pathing, and dependency contexts required for a specialist (e.g., a Julia environment or a Rust binary) to run without host pollution.
-* **The Common Tongue:** It acts as the primary orchestrator for **FFI (Foreign Function Interface)** and **Internal RPC**. It ensures that data structures passed from a Go-based network service are correctly interpreted by a C-based hardware hook.
-* **Standalone Capability:** It is designed as an independent library/service, allowing for polyglot interop even outside the full COBALT stack.
+* **Environment Provisioning:** It dynamically generates the necessary environment variables, pathing, and dependency contexts required for a specialist to run without host pollution.
+* **The Common Tongue:** It acts as the primary orchestrator for **FFI (Foreign Function Interface)** and **Internal RPC**. It ensures data structures passed from a Go network service are correctly interpreted by a C-based hardware hook.
+* **Standalone Capability:** Designed as an independent library/service, allowing for polyglot interop even outside the full COBALT stack.
 
 ---
 
 ## 4. THE EXECUTION LOOP (INTENT TO ACTION)
 The system operates on a strict **Evaluation $\rightarrow$ Provisioning $\rightarrow$ Execution** pipeline to ensure that no code is run without total environmental control.
 
-1.  **Selection (L06):** The Orchestrator analyzes the task and selects the optimal language specialists. If the task is a matrix calculation with a security requirement, it flags **Julia** and **Rust**.
-2.  **Bridge Construction (L03):** **Nexus** establishes the communication bridge. It provisions the virtual memory space or RPC sockets needed for these two distinct runtimes to share data.
+1.  **Selection (L06):** The Orchestrator analyzes the task and selects the optimal language specialists. (e.g., Julia for spatial math, C for the AR-OS render).
+2.  **Bridge Construction (L03):** **Nexus** establishes the communication bridge, provisioning the virtual memory or RPC sockets needed for distinct runtimes to share data.
 3.  **Integrity Check (L04):** The **Guardian** performs a SHA-256 verification of the generated logic and the Nexus-provisioned environment to prevent injection.
 4.  **Process Dispatch (L02/L01):** The task is dispatched to the Foundation layer. Nexus monitors the process lifecycle, while the Bare Metal layer manages CPU priority and GPU scheduling.
 5.  **Audit Commit (L04/L08):** Upon completion, the result is piped back through the Nexus, verified, and committed to the Temporal Layer for historical audit.
@@ -54,6 +54,6 @@ The system operates on a strict **Evaluation $\rightarrow$ Provisioning $\righta
 ## 5. ARCHITECTURAL REALITY
 **NO AUTHORITY. NO MONOCULTURES. JUST PURE POLYGLOT POWER.**
 
-COBALT is moving from a **Python Blueprint** to a **Native Substrate**. As the logic matures, the scaffolding is replaced by the specialist languages, resulting in a system that is as safe as Rust, as fast as C, and as stable as Java.
+COBALT is moving from a **Python Blueprint** to a **Native Substrate** hosted on a **Custom AR-OS**. As the logic matures, the scaffolding is replaced by the specialist languages. The result is a system as safe as Rust, as fast as C, and as stable as Java.
 
-> *"They said a polyglot system of this scale was impossible. I told them their imagination was just limited by their IDE."*
+> *"They said a polyglot AR system was impossible. I told them their imagination was just limited by their current window manager."*
