@@ -19,4 +19,9 @@ export default defineConfig({
     rehypePlugins: [rehypeHighlight, rehypeSlug],
   },
   integrations: [mermaid()],
+  vite: {
+    build: {
+      chunkSizeWarningLimit: 600
+    }
+  }
 });
