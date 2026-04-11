@@ -1,0 +1,369 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const logs = await getCollection('logs');
+const allTags = [...new Set(logs.flatMap(log => log.data.tags || []))];
+const allCategories = [...new Set(logs.flatMap(log => log.data.categories || []))];
+
+const searchIndex = logs.map(log => ({
+  id: log.id,
+  title: log.data.title,
+  date: log.data.date.toISOString(),
+  tags: log.data.tags || [],
+  categories: log.data.categories || [],
+  excerpt: log.body.slice(0, 200)
+}));
+---
+
+<Layout title="Search">
+  <div class="search-page">
+    <header class="search-header">
+      <h1 class="title">
+        <span class="bracket">[</span> SEARCH <span class="bracket">]</span>
+      </h1>
+      <p class="subtitle">Find logs, tags, and concepts across COBALT</p>
+    </header>
+
+    <div class="search-container">
+      <div class="search-input-wrapper">
+        <span class="search-icon">⌕</span>
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="Search logs, tags, code..."
+          autocomplete="off"
+        />
+        <span class="search-shortcut">Ctrl+K</span>
+      </div>
+
+      <div class="filters">
+        <div class="filter-group">
+          <label>Tags:</label>
+          <div class="filter-tags" id="filter-tags">
+            {allTags.map(tag => (
+              <button class="tag-filter" data-tag={tag}>#{tag}</button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="results" id="results">
+        <div class="results-empty">
+          <span class="empty-icon">⌕</span>
+          <p>Start typing to search...</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-index" data-index={JSON.stringify(searchIndex)}></div>
+  </div>
+</Layout>
+
+<script>
+  import Fuse from 'fuse.js';
+
+  const searchInput = document.getElementById('search-input') as HTMLInputElement;
+  const resultsContainer = document.getElementById('results');
+  const searchIndexEl = document.querySelector('.search-index') as HTMLElement;
+  const filterTags = document.querySelectorAll('.tag-filter');
+  
+  const searchIndex = JSON.parse(searchIndexEl.dataset.index || '[]');
+  
+  const fuse = new Fuse(searchIndex, {
+    keys: ['title', 'tags', 'categories', 'excerpt'],
+    threshold: 0.3,
+    includeScore: true
+  });
+
+  let activeTag: string | null = null;
+
+  function formatDate(isoString: string) {
+    return new Date(isoString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  }
+
+  function renderResults(results: any[]) {
+    if (results.length === 0) {
+      resultsContainer.innerHTML = `
+        <div class="results-empty">
+          <span class="empty-icon">∅</span>
+          <p>No results found</p>
+        </div>
+      `;
+      return;
+    }
+
+    resultsContainer.innerHTML = results.map(result => `
+      <a href="/logs/${result.item.id}" class="result-item">
+        <div class="result-header">
+          <span class="result-id">${result.item.id.toUpperCase()}</span>
+          <span class="result-date">${formatDate(result.item.date)}</span>
+        </div>
+        <h3 class="result-title">${result.item.title}</h3>
+        <div class="result-tags">
+          ${result.item.tags.map((t: string) => `<span class="tag">#${t}</span>`).join('')}
+        </div>
+      </a>
+    `).join('');
+  }
+
+  searchInput.addEventListener('input', (e) => {
+    const query = (e.target as HTMLInputElement).value;
+    if (!query && !activeTag) {
+      resultsContainer.innerHTML = `
+        <div class="results-empty">
+          <span class="empty-icon">⌕</span>
+          <p>Start typing to search...</p>
+        </div>
+      `;
+      return;
+    }
+
+    let results = fuse.search(query);
+    
+    if (activeTag) {
+      results = results.filter(r => r.item.tags.includes(activeTag!));
+    }
+    
+    renderResults(results);
+  });
+
+  filterTags.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tag = btn.getAttribute('data-tag');
+      
+      if (activeTag === tag) {
+        activeTag = null;
+        btn.classList.remove('active');
+      } else {
+        filterTags.forEach(b => b.classList.remove('active'));
+        activeTag = tag;
+        btn.classList.add('active');
+      }
+
+      if (activeTag) {
+        let results = fuse.search(searchInput.value);
+        results = results.filter(r => r.item.tags.includes(activeTag!));
+        renderResults(results);
+      } else if (searchInput.value) {
+        const results = fuse.search(searchInput.value);
+        renderResults(results);
+      } else {
+        resultsContainer.innerHTML = `
+          <div class="results-empty">
+            <span class="empty-icon">⌕</span>
+            <p>Start typing to search...</p>
+          </div>
+        `;
+      }
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      searchInput.focus();
+    }
+  });
+</script>
+
+<style>
+  .search-page {
+    padding: 2rem 0;
+  }
+
+  .search-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--cobalt);
+    letter-spacing: -2px;
+  }
+
+  .bracket { color: var(--text-dim); }
+
+  .subtitle {
+    color: var(--text-dim);
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .search-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .search-input-wrapper {
+    display: flex;
+    align-items: center;
+    background: var(--bg-card);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .search-input-wrapper:focus-within {
+    border-color: var(--cobalt);
+  }
+
+  .search-icon {
+    font-size: 1.5rem;
+    color: var(--text-dim);
+    margin-right: 1rem;
+  }
+
+  #search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    outline: none;
+  }
+
+  #search-input::placeholder {
+    color: var(--text-dim);
+  }
+
+  .search-shortcut {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    background: rgba(0, 212, 255, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .filters {
+    margin-bottom: 2rem;
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .filter-group label {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+
+  .filter-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag-filter {
+    background: var(--bg-card);
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tag-filter:hover {
+    border-color: var(--cobalt);
+    color: var(--cobalt);
+  }
+
+  .tag-filter.active {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: var(--cobalt);
+    color: var(--cobalt);
+  }
+
+  .results {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .results-empty {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-dim);
+  }
+
+  .empty-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+  }
+
+  .result-item {
+    display: block;
+    background: var(--bg-card);
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .result-item:hover {
+    border-color: var(--cobalt);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
+  }
+
+  .result-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .result-id {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--cobalt);
+    font-weight: 700;
+    font-size: 0.8rem;
+  }
+
+  .result-date {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+  }
+
+  .result-title {
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .result-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .result-tags .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+  }
+
+  .search-index {
+    display: none;
+  }
+</style>

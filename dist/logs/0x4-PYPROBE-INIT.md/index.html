@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.18.1"><title>Log 0x04: PyProbe — Memory Introspection From Scratch | c0balt</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"><script>
+      const theme = localStorage.getItem('theme') || 'dark';
+      if (theme === 'light') {
+        document.documentElement.classList.add('light');
+      }
+    </script><link rel="stylesheet" href="/_astro/architecture.BCLMPq3h.css">
+<style>.log-post[data-astro-cid-v3d7w2ur]{max-width:800px;margin:0 auto}.log-header[data-astro-cid-v3d7w2ur]{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid rgba(0,212,255,.15)}.log-meta[data-astro-cid-v3d7w2ur]{display:flex;justify-content:space-between;font-family:JetBrains Mono,monospace;font-size:.8rem;color:var(--text-dim);margin-bottom:.5rem}.log-id[data-astro-cid-v3d7w2ur]{color:var(--cobalt)}.log-title[data-astro-cid-v3d7w2ur]{font-size:2rem;font-weight:900;color:var(--text);margin-bottom:1rem;line-height:1.2}.log-info[data-astro-cid-v3d7w2ur]{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}.reading-time[data-astro-cid-v3d7w2ur]{font-family:JetBrains Mono,monospace;font-size:.75rem;color:var(--cobalt);background:#00d4ff1a;padding:.25rem .5rem;border-radius:2px}.log-tags[data-astro-cid-v3d7w2ur]{display:flex;gap:.5rem;flex-wrap:wrap}.tag[data-astro-cid-v3d7w2ur]{font-family:JetBrains Mono,monospace;font-size:.75rem;color:var(--text-dim);background:#00d4ff1a;padding:.25rem .5rem;border-radius:2px}.log-content[data-astro-cid-v3d7w2ur]{line-height:1.8;font-size:1.05rem}.log-content[data-astro-cid-v3d7w2ur] h2{font-size:1.5rem;color:var(--cobalt);margin:2rem 0 1rem;font-weight:700}.log-content[data-astro-cid-v3d7w2ur] h3{font-size:1.2rem;color:var(--text);margin:1.5rem 0 .5rem}.log-content[data-astro-cid-v3d7w2ur] p{margin:1rem 0;color:var(--text)}.log-content[data-astro-cid-v3d7w2ur] ul,.log-content[data-astro-cid-v3d7w2ur] ol{margin:1rem 0;padding-left:1.5rem}.log-content[data-astro-cid-v3d7w2ur] li{margin:.5rem 0;color:var(--text)}.log-content[data-astro-cid-v3d7w2ur] code{font-family:JetBrains Mono,monospace;background:var(--bg-card);padding:.2rem .4rem;border-radius:2px;font-size:.9rem;color:var(--accent)}.log-content[data-astro-cid-v3d7w2ur] pre{background:var(--bg-card);padding:1rem;border-radius:4px;overflow-x:auto;margin:1rem 0;border:1px solid rgba(0,212,255,.1)}.log-content[data-astro-cid-v3d7w2ur] pre code{background:none;padding:0;color:var(--text)}.log-content[data-astro-cid-v3d7w2ur] blockquote{border-left:3px solid var(--cobalt);padding-left:1rem;margin:1rem 0;color:var(--text-dim);font-style:italic}.log-content[data-astro-cid-v3d7w2ur] strong{color:var(--cobalt);font-weight:700}.log-content[data-astro-cid-v3d7w2ur] hr{border:none;border-top:1px solid rgba(0,212,255,.1);margin:2rem 0}.log-content[data-astro-cid-v3d7w2ur] a{color:var(--cobalt);text-decoration:none}.log-content[data-astro-cid-v3d7w2ur] a:hover{text-decoration:underline}.log-content[data-astro-cid-v3d7w2ur] table{width:100%;border-collapse:collapse;margin:1rem 0}.log-content[data-astro-cid-v3d7w2ur] th,.log-content[data-astro-cid-v3d7w2ur] td{border:1px solid rgba(0,212,255,.1);padding:.5rem;text-align:left}.log-content[data-astro-cid-v3d7w2ur] th{background:#00d4ff0d;font-weight:700}.log-footer[data-astro-cid-v3d7w2ur]{margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(0,212,255,.1)}.back-link[data-astro-cid-v3d7w2ur]{font-family:JetBrains Mono,monospace;color:var(--cobalt);text-decoration:none;font-size:.9rem}.back-link[data-astro-cid-v3d7w2ur]:hover{text-decoration:underline}
+</style><script type="module" src="/_astro/page.BBqGbwgD.js"></script></head> <body> <div class="scroll-progress" id="scroll-progress"></div> <nav class="logic-gate-nav"> <!-- Main trunk SVG --> <svg class="circuit-svg" viewBox="0 0 400 80" preserveAspectRatio="none"> <!-- Main trunk line --> <path class="circuit-line" d="M 20 75 L 20 40 L 380 40"></path> <!-- Branch to logs --> <path class="circuit-line branch-logs" d="M 70 40 L 70 30"></path> <!-- Branch to stack --> <path class="circuit-line branch-stack" d="M 150 40 L 150 30"></path> <!-- Branch to arch --> <path class="circuit-line branch-arch" d="M 230 40 L 230 30"></path> <!-- Branch to search --> <path class="circuit-line branch-search" d="M 310 40 L 310 30"></path> <!-- Active glow bead --> <circle class="data-bead" cx="20" cy="75" r="4"> <animateMotion dur="3s" repeatCount="indefinite" path="M 20 75 L 20 40 L 380 40"></animateMotion> </circle> </svg> <div class="nav-content"> <a href="/" class="logo"> <span class="bracket">[</span>c0balt<span class="bracket">]</span> </a> <div class="nav-links"> <a href="/logs" class="nav-node" data-branch="logs"> <span class="node-dot"></span> <span class="node-label">logs</span> </a> <a href="/stack" class="nav-node" data-branch="stack"> <span class="node-dot"></span> <span class="node-label">stack</span> </a> <a href="/architecture" class="nav-node" data-branch="arch"> <span class="node-dot"></span> <span class="node-label">arch</span> </a> <a href="/search" class="nav-node" data-branch="search"> <span class="node-dot"></span> <span class="node-label">search</span> </a> <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme"> <span class="sun-icon">☀</span> <span class="moon-icon">☾</span> </button> <a href="https://github.com/Soumyadeep-Chakravarti" target="_blank" class="nav-node"> <span class="node-dot"></span> <span class="node-label">gh</span> </a> </div> </div> </nav> <main>  <article class="log-post" data-astro-cid-v3d7w2ur> <header class="log-header" data-astro-cid-v3d7w2ur> <div class="log-meta" data-astro-cid-v3d7w2ur> <span class="log-id" data-astro-cid-v3d7w2ur>LOG 0X4-PYPROBE-INIT.MD</span> <span class="log-date" data-astro-cid-v3d7w2ur>February 28, 2026</span> </div> <h1 class="log-title" data-astro-cid-v3d7w2ur>Log 0x04: PyProbe — Memory Introspection From Scratch</h1> <div class="log-info" data-astro-cid-v3d7w2ur> <span class="reading-time" data-astro-cid-v3d7w2ur>2 min read</span> <div class="log-tags" data-astro-cid-v3d7w2ur> <span class="tag" data-astro-cid-v3d7w2ur>#python</span><span class="tag" data-astro-cid-v3d7w2ur>#cpython</span><span class="tag" data-astro-cid-v3d7w2ur>#memory</span><span class="tag" data-astro-cid-v3d7w2ur>#cffi</span><span class="tag" data-astro-cid-v3d7w2ur>#introspection</span> </div> </div> </header> <div class="log-content" data-astro-cid-v3d7w2ur> <h1 id="-cobalt-engineering-log-0x03-">[ COBALT Engineering Log 0x03 ]</h1>
+<h2 id="pyprobe--memory-introspection-from-scratch">PyProbe — Memory Introspection From Scratch</h2>
+<p><em>February 28, 2026. PyProbe gets its first real code. This is where the rubber meets the road.</em></p>
+<hr>
+<h2 id="the-birth">The Birth</h2>
+<p>Today I finally got serious about solving Python’s memory problem.</p>
+<p><strong>PyProbe</strong> is born. First commits:</p>
+<ul>
+<li><a href="https://github.com/Soumyadeep-Chakravarti/PyProbe/commit/9b384e1705aed76999b0db5a75f94c25a56bf5e8">pyprobe - init and made basic memory scanner, still working on dictionary</a></li>
+<li><a href="https://github.com/Soumyadeep-Chakravarti/PyProbe/commit/de850aa6da93ff09e47e7ca8dede45755e77d81d">pyprobe - Add README.md</a></li>
+</ul>
+<p>The goal is brutally simple: <strong>pin Python objects to fixed memory addresses so external processes can read them safely.</strong></p>
+<hr>
+<h2 id="the-approach">The Approach</h2>
+<p>I’m not fighting CPython’s allocator. I’m <em>reading</em> it.</p>
+<p>Using ctypes, I can:</p>
+<ol>
+<li>Access <code>PyObject_HEAD</code> to get type info and refcount</li>
+<li>Traverse <code>PyDictObject</code> internals to extract key-value pairs</li>
+<li>Validate addresses before dereferencing (safety first)</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> pyprobe</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Pin a dict</span></span>
+<span class="line"><span style="color:#E1E4E8">data </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Alice"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"age"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">ptr </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pyprobe.pin(data)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># X-Ray: see what's really in memory</span></span>
+<span class="line"><span style="color:#E1E4E8">result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ptr.xray()</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(result)  </span><span style="color:#6A737D"># {'name': 'Alice', 'age': 30}</span></span></code></pre>
+<hr>
+<h2 id="what-working-on-dictionary-means">What “Working on Dictionary” Means</h2>
+<p>The scanner works for simple types (int, float, str, bytes). But <code>dict</code> is a different beast.</p>
+<p>CPython 3.12+ changed the dict implementation from “compact” to something more complex. The hash table entries are now “split” across multiple arrays. Empty slots use “dummy” tombstones.</p>
+<p>I spent 6 hours today just understanding how to iterate a <code>PyDictObject</code> in Python 3.12.</p>
+<p>The answer involves:</p>
+<ul>
+<li><code>ma_keys</code> (keys array)</li>
+<li><code>ma_values</code> (values array, if split table)</li>
+<li><code>dk_nentries</code> (occupied slots)</li>
+<li>Tombstone detection (entries set to dummy values)</li>
+</ul>
+<hr>
+<h2 id="current-status">Current Status</h2>
+<p>PyProbe X-Ray: Working (basic types)<br>
+PyProbe Dict support: Deciphering CPython internals<br>
+Coffee: Triple shot<br>
+Sanity: Focused</p>
+<p><strong>The foundation is being built. PyProbe will be the anchor that makes everything else possible.</strong></p>
+<hr>
+<p><em>Next: <a href="./0x05-PYPROBE-DOCS.md">Log 0x05: PyProbe Documentation — Cleaning Up the Chaos</a></em></p> </div> <footer class="log-footer" data-astro-cid-v3d7w2ur> <a href="/" class="back-link" data-astro-cid-v3d7w2ur>← Back to COBALT</a> </footer> </article>  </main> <footer> <span class="terminal-prompt">></span> abstraction is a weapon
+</footer> <script type="module">const t=document.getElementById("scroll-progress");window.addEventListener("scroll",()=>{const e=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;t.style.width=e+"%"});const n=document.getElementById("theme-toggle");n?.addEventListener("click",()=>{const e=document.documentElement.classList.toggle("light");localStorage.setItem("theme",e?"light":"dark")});</script> </body> </html>  

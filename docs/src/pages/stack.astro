@@ -1,0 +1,704 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const logs = [
+  { id: '0x0', title: 'genesis', date: 'Nov', desc: 'the vision' },
+  { id: '0x1', title: 'nexus init', date: 'Nov', desc: 'started building the bridge' },
+  { id: '0x2', title: 'first grind', date: 'Dec', desc: 'hit the python wall' },
+  { id: '0x3', title: 'restart', date: 'Dec', desc: 'realized python memory is the enemy' },
+  { id: '0x4', title: 'pyprobe init', date: 'Feb', desc: 'while building pyjx, realized we need pyprobe first' },
+  { id: '0x5', title: 'pyprobe docs', date: 'Feb', desc: 'cleaned up the mess' },
+  { id: '0x6', title: 'pyprobe types', date: 'Mar', desc: 'x-ray phase complete' },
+  { id: '0x7', title: 'pyjx init', date: 'Mar', desc: 'started building pyjx to talk to java' },
+  { id: '0x8', title: 'nexus rebuild', date: 'Apr', desc: 'nexus rebuild with new architecture' },
+];
+
+const dependencyChain = `
+PyProbe  →  pins Python memory (THE FOUNDATION)
+    ↓
+PyJX     →  PyProbe wrapper + Java bridge
+    ↓
+Nexus    →  FFI bridge via Project Panama
+    ↓
+COBALT  →  the orchestrator
+`;
+
+const projects = [
+  {
+    emoji: '🦀',
+    name: 'Guard',
+    lang: 'Rust',
+    layer: 'L04',
+    status: 'planning',
+    repo: 'rust-guardian',
+    desc: 'Paranoid memory safety. Every buffer gets verified before the next layer touches it.',
+  },
+  {
+    emoji: '🔌',
+    name: 'Mechanic',
+    lang: 'C',
+    layer: 'L01',
+    status: 'planning',
+    repo: 'c-mechanic',
+    desc: 'Raw NVIDIA hooks. Wayland compositor access. No drivers between me and the GPU.',
+  },
+  {
+    emoji: '🚀',
+    name: 'Dispatcher',
+    lang: 'Go',
+    layer: 'L06',
+    status: 'planning',
+    repo: 'go-dispatcher',
+    desc: 'Async networking. API gateway. High-speed orchestration.',
+  },
+  {
+    emoji: '☕',
+    name: 'Nexus',
+    lang: 'Java 25',
+    layer: 'L03',
+    status: 'building',
+    repo: 'Nexus',
+    desc: 'Project Panama FFI bridge. The spine that connects everything.',
+  },
+  {
+    emoji: '🐍',
+    name: 'Researcher',
+    lang: 'Python',
+    layer: 'L05',
+    status: 'planning',
+    repo: 'py-researcher',
+    desc: 'AI models, intent parsing, rapid prototyping.',
+  },
+  {
+    emoji: '💧',
+    name: 'Medic',
+    lang: 'Elixir',
+    layer: 'L09',
+    status: 'planning',
+    repo: 'elixir-medic',
+    desc: 'BEAM VM fault tolerance. When something crashes, the system heals itself.',
+  },
+  {
+    emoji: 'λ',
+    name: 'Logic',
+    lang: 'Haskell',
+    layer: 'L07',
+    status: 'planning',
+    repo: 'haskell-logic',
+    desc: 'Formal verification. Mathematically proven state transitions.',
+  },
+  {
+    emoji: '🟢',
+    name: 'Scientist',
+    lang: 'Julia',
+    layer: 'L06',
+    status: 'planning',
+    repo: 'julia-scientist',
+    desc: 'Parallel matrix operations. Spatial physics calculations.',
+  },
+  {
+    emoji: '🌙',
+    name: 'Ghost',
+    lang: 'Lua',
+    layer: 'L10',
+    status: 'planning',
+    repo: 'lua-ghost',
+    desc: 'Hot-swappable scripts. Inject behavior without rebuilds.',
+  },
+];
+
+const stack = [
+  {
+    name: 'PyProbe',
+    lang: 'C/Python',
+    status: 'active',
+    repo: 'PyProbe',
+    desc: 'Memory pinning anchor. X-Ray introspection of CPython internals. Supports int, float, str, bytes, list, tuple, dict, set with cycle detection.',
+    phases: { xray: '✅ complete', scalpel: '🔄 in progress', toolkit: '📋 future' },
+    link: 'https://github.com/Soumyadeep-Chakravarti/PyProbe',
+  },
+  {
+    name: 'PyJX',
+    lang: 'Python/Java',
+    status: 'building',
+    repo: 'PyJx',
+    desc: 'Java-Python FFI bridge. Zero-copy memory sharing via PyProbe pointers.',
+    phases: { wrapper: '✅ alpha', bridge: '🔄 building', bindings: '📋 future' },
+    link: 'https://github.com/Soumyadeep-Chakravarti/PyJx',
+  },
+  {
+    name: 'Nexus',
+    lang: 'Java 25',
+    status: 'building',
+    repo: 'Nexus',
+    desc: 'FFI bridge via Project Panama. Memory allocation via Arena.ofShared(). Uses PyJX for Python interop.',
+    phases: { memory: '🔄 rebuilding', ffi: '📋 planning', lifecycle: '📋 planning' },
+    link: 'https://github.com/Soumyadeep-Chakravarti/Nexus',
+  },
+];
+
+const baseUrl = 'https://github.com/Soumyadeep-Chakravarti';
+---
+
+<Layout title="Stack">
+  <header class="hero">
+    <h1 class="title">
+      <span class="bracket">[</span>c0balt<span class="bracket">]</span>
+    </h1>
+    <p class="tagline">abstraction is a weapon. use it.</p>
+    <p class="mission">
+      polyglot infrastructure. 9 languages. 11 layers.
+    </p>
+  </header>
+
+  {/* Timeline */}
+  <section class="section">
+    <h2 class="section-title">
+      <span class="hex">❯</span> Engineering Timeline
+    </h2>
+    <div class="timeline">
+      {logs.map((log) => (
+        <a href={`/logs/${log.id}`} class="timeline-node">
+          <span class="timeline-id">{log.id.toUpperCase()}</span>
+          <span class="timeline-title">{log.title}</span>
+          <span class="timeline-date">{log.date}</span>
+          <span class="timeline-desc">{log.desc}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {/* Dependency Chain */}
+  <section class="section">
+    <h2 class="section-title">
+      <span class="hex">❯</span> Dependency Chain
+    </h2>
+    <div class="dependency-chain">
+      <pre class="chain-diagram">{dependencyChain}</pre>
+    </div>
+  </section>
+
+  {/* Foundation Stack */}
+  <section class="section">
+    <h2 class="section-title">
+      <span class="hex">❯</span> Foundation Stack (Active)
+    </h2>
+    <div class="stack-grid">
+      {stack.map(s => (
+        <a href={s.link} target="_blank" class={`stack-card ${s.status}`}>
+          <div class="card-header">
+            <span class="stack-name">{s.name}</span>
+            <span class={`status-badge ${s.status}`}>{s.status === 'active' ? 'ACTIVE' : 'BUILDING'}</span>
+          </div>
+          <p class="stack-desc">{s.desc}</p>
+          <div class="phases">
+            {s.phases && Object.entries(s.phases).map(([phase, status]) => (
+              <div class="phase-item">
+                <span class="phase-name">{phase}:</span>
+                <span class="phase-status">{status}</span>
+              </div>
+            ))}
+          </div>
+          <div class="card-footer">
+            <span class="lang">{s.lang}</span>
+            <span class="repo">↗ {s.repo}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {/* Specialist Hive */}
+  <section class="section">
+    <h2 class="section-title">
+      <span class="hex">❯</span> Specialist Hive
+    </h2>
+    <div class="specialist-grid">
+      {projects.map(p => (
+        <div class={`specialist-card ${p.status}`}>
+          <div class="card-glow"></div>
+          <div class="card-content">
+            <div class="specialist-header">
+              <span class="emoji">{p.emoji}</span>
+              <span class={`status-badge ${p.status}`}>
+                {p.status === 'active' ? 'ACTIVE' : p.status === 'building' ? 'BUILDING' : p.status === 'planning' ? 'PLANNING' : 'BLOCKED'}
+              </span>
+            </div>
+            <h3 class="specialist-name">{p.name}</h3>
+            <p class="specialist-desc">{p.desc}</p>
+            <div class="card-footer">
+              <span class="layer">Layer {p.layer}</span>
+              <span class="lang-tag">{p.lang}</span>
+            </div>
+            <a href={`${baseUrl}/${p.repo}`} target="_blank" class="repo-link">
+              → {p.repo}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* Architecture Layers */}
+  <section class="section">
+    <h2 class="section-title">
+      <span class="hex">❯</span> Architecture Layers
+    </h2>
+    <div class="layers-diagram">
+      <div class="layer-row control">
+        <span class="layer-label">L11-L10</span>
+        <span class="layer-name">Human Intent</span>
+        <span class="layer-components">Governance, Persona</span>
+      </div>
+      <div class="layer-row brain">
+        <span class="layer-label">L09-L07</span>
+        <span class="layer-name">Cognition</span>
+        <span class="layer-components">Medic (Elixir), Logic (Haskell), Temporal</span>
+      </div>
+      <div class="layer-row logic">
+        <span class="layer-label">L06-L05</span>
+        <span class="layer-name">Decision</span>
+        <span class="layer-components">Dispatcher (Go), Scientist (Julia), Researcher (Python)</span>
+      </div>
+      <div class="layer-row execution">
+        <span class="layer-label">L04-L01</span>
+        <span class="layer-name">Execution</span>
+        <span class="layer-components">Guard (Rust), Nexus (Java), Mechanic (C)</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .projects-page {
+    padding: 2rem 0;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--cobalt);
+    letter-spacing: -2px;
+  }
+
+  .bracket {
+    color: var(--text-dim);
+  }
+
+  .subtitle {
+    color: var(--text-dim);
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .section {
+    margin: 4rem 0;
+  }
+
+  .section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--cobalt);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hex {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .stack-card {
+    display: block;
+    background: var(--bg-card);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .stack-card:hover {
+    border-color: var(--success);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 255, 136, 0.15);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .stack-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--success);
+  }
+
+  .status-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+    letter-spacing: 1px;
+  }
+
+  .status-badge.active {
+    background: rgba(0, 255, 136, 0.15);
+    color: var(--success);
+    animation: statusGlow 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes statusGlow {
+    from { box-shadow: 0 0 3px var(--success); }
+    to { box-shadow: 0 0 10px var(--success), 0 0 15px var(--success); }
+  }
+
+  .status-badge.planning {
+    background: rgba(255, 170, 0, 0.15);
+    color: var(--warning);
+  }
+
+  .status-badge.blocked {
+    background: rgba(255, 51, 102, 0.15);
+    color: var(--accent);
+  }
+
+  .stack-desc {
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+  }
+
+  .lang {
+    color: var(--text-dim);
+  }
+
+  .repo {
+    color: var(--cobalt);
+  }
+
+  .specialist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .specialist-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .specialist-card:hover {
+    border-color: var(--cobalt);
+    transform: translateY(-4px);
+  }
+
+  .specialist-card.active {
+    border-color: rgba(0, 255, 136, 0.3);
+  }
+
+  .specialist-card.active:hover {
+    box-shadow: 0 8px 30px rgba(0, 212, 255, 0.15);
+  }
+
+  .card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cobalt), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .specialist-card:hover .card-glow {
+    opacity: 1;
+  }
+
+  .card-content {
+    padding: 1.5rem;
+  }
+
+  .specialist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .emoji {
+    font-size: 2rem;
+  }
+
+  .specialist-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .specialist-desc {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .layer {
+    color: var(--cobalt);
+  }
+
+  .lang-tag {
+    color: var(--text-dim);
+    background: rgba(0, 212, 255, 0.1);
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+  }
+
+  .repo-link {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--cobalt);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .repo-link:hover {
+    opacity: 1;
+  }
+
+  .layers-diagram {
+    background: var(--bg-card);
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .layer-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 2fr;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.05);
+    transition: background 0.2s;
+  }
+
+  .layer-row:last-child {
+    border-bottom: none;
+  }
+
+  .layer-row:hover {
+    background: rgba(0, 212, 255, 0.03);
+  }
+
+  .layer-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--cobalt);
+    font-weight: 700;
+  }
+
+  .layer-name {
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .layer-components {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+
+  .layer-row.control { border-left: 3px solid var(--accent); }
+  .layer-row.brain { border-left: 3px solid #a855f7; }
+  .layer-row.logic { border-left: 3px solid var(--warning); }
+  .layer-row.execution { border-left: 3px solid var(--success); }
+
+  /* Timeline */
+  .timeline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+  .timeline-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    min-width: 100px;
+    animation: nodePulse 3s ease-in-out infinite;
+  }
+  @keyframes nodePulse {
+    0%, 100% { border-color: rgba(0, 212, 255, 0.15); }
+    50% { border-color: rgba(0, 212, 255, 0.4); }
+  }
+  .timeline-node:hover {
+    border-color: var(--cobalt);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px var(--glow);
+    animation: none;
+  }
+  .timeline-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--cobalt);
+  }
+  .timeline-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0.25rem 0;
+  }
+  .timeline-date {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+  }
+
+  /* Dependency Chain */
+  .dependency-chain {
+    background: var(--bg-card);
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    overflow-x: auto;
+  }
+  .chain-diagram {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text);
+    margin: 0;
+    white-space: pre;
+  }
+
+  /* Phases */
+  .phases {
+    margin: 1rem 0;
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+  .phase-item {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .phase-item:last-child {
+    border-bottom: none;
+  }
+  .phase-name {
+    text-transform: capitalize;
+    color: var(--text-dim);
+  }
+  .phase-status {
+    color: var(--cobalt);
+  }
+
+  /* Building status */
+  .status-badge.building {
+    background: rgba(255, 170, 0, 0.15);
+    color: var(--warning);
+  }
+
+  .stack-card.building {
+    border-color: rgba(255, 170, 0, 0.3);
+  }
+  .stack-card.building:hover {
+    border-color: var(--warning);
+    box-shadow: 0 8px 30px rgba(255, 170, 0, 0.15);
+  }
+  .stack-card.building .stack-name {
+    color: var(--warning);
+  }
+
+  @media (max-width: 768px) {
+    .layer-row {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    .layers-diagram {
+      display: none;
+    }
+  }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .hero .title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--cobalt);
+    letter-spacing: -2px;
+  }
+  .hero .bracket {
+    color: var(--text-dim);
+  }
+  .hero .tagline {
+    color: var(--text-dim);
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+  }
+  .hero .mission {
+    color: var(--text);
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+</style>
