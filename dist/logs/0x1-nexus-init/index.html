@@ -7,7 +7,99 @@
 *November 4, 2025. 2:30 AM. The Nexus repo just got its first commit. It's alive. It's breathing. ..."><meta property="og:image" content="https://soumyadeep-chakravarti.github.io/Project-COBALT/og-image.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:url" content="https://soumyadeep-chakravarti.github.io/Project-COBALT"><meta name="twitter:title" content="Log 0x01: Nexus — The First Spark | c0balt"><meta name="twitter:description" content="# [ COBALT Engineering Log 0x01 ]
 ## Nexus — The First Spark
 
-*November 4, 2025. 2:30 AM. The Nexus repo just got its first commit. It's alive. It's breathing. ..."><meta name="twitter:image" content="https://soumyadeep-chakravarti.github.io/Project-COBALT/og-image.png"><title>Log 0x01: Nexus — The First Spark | c0balt</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet"></noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"><script type="module">
+*November 4, 2025. 2:30 AM. The Nexus repo just got its first commit. It's alive. It's breathing. ..."><meta name="twitter:image" content="https://soumyadeep-chakravarti.github.io/Project-COBALT/og-image.png"><title>Log 0x01: Nexus — The First Spark | c0balt</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet"></noscript><style>
+      /* Code syntax highlighting */
+      pre.astro-code { background: var(--bg-card) !important; border: 1px solid var(--border); border-radius: 8px; overflow-x: auto; padding: 1rem; }
+      pre.astro-code span { color: var(--text) !important; }
+      pre.astro-code .line { color: var(--text) !important; }
+      /* Dark theme colors for syntax */
+      .astro-code.github-dark .astro-code span { color: #e1e4e8 !important; }
+      .astro-code.github-dark [style*="color:#ff7b72"], .astro-code.github-dark [style*="color: #ff7b72"] { color: var(--neon-pink) !important; }
+      .astro-code.github-dark [style*="color:#7ee787"], .astro-code.github-dark [style*="color: #7ee787"] { color: var(--neon-green) !important; }
+      .astro-code.github-dark [style*="color:#79c0ff"], .astro-code.github-dark [style*="color: #79c0ff"] { color: var(--neon-cyan) !important; }
+      .astro-code.github-dark [style*="color:#d2a8ff"], .astro-code.github-dark [style*="color: #d2a8ff"] { color: var(--neon-purple) !important; }
+      .astro-code.github-dark [style*="color:#ffa657"], .astro-code.github-dark [style*="color: #ffa657"] { color: #ffa657 !important; }
+      .astro-code.github-dark [style*="color:#8b949e"], .astro-code.github-dark [style*="color: #8b949e"] { color: var(--text-dim) !important; }
+      /* Light theme - override inline styles */
+      :root.light pre.astro-code { background: var(--bg-card) !important; border-color: var(--border) !important; }
+      :root.light pre.astro-code[style*="background-color"] { background-color: var(--bg-card) !important; }
+      :root.light pre.astro-code span { color: var(--text) !important; }
+      :root.light pre.astro-code .line { color: var(--text) !important; }
+      :root.light pre.astro-code [style*="color:#ff7b72"] { color: #d11d53 !important; }
+      :root.light pre.astro-code [style*="color:#7ee787"] { color: #059669 !important; }
+      :root.light pre.astro-code [style*="color:#79c0ff"] { color: #0891b2 !important; }
+      :root.light pre.astro-code [style*="color:#d2a8ff"] { color: #7c3aed !important; }
+      :root.light pre.astro-code [style*="color:#ffa657"] { color: #d97706 !important; }
+      :root.light pre.astro-code [style*="color:#8b949e"] { color: var(--text-dim) !important; }
+      :root.light pre.astro-code [style*="color:#24292e"] { color: var(--text) !important; }
+      pre code.hljs { display: block; overflow-x: auto; padding: 1em; }
+      pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; overflow-x: auto; }
+      code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+    </style><style>
+      :root {
+        --cobalt: #00d4ff;
+        --cobalt-dim: #0088aa;
+        --bg-dark: #0a0a0f;
+        --bg-card: #12121a;
+        --text: #e0e0e0;
+        --text-dim: #666;
+        --accent: #ff3366;
+        --success: #00ff88;
+        --warning: #ffaa00;
+        --glow: rgba(0, 212, 255, 0.4);
+        --border: rgba(0, 212, 255, 0.15);
+        --neon-pink: #ff0080;
+        --neon-cyan: #00ffff;
+        --neon-purple: #a855f7;
+        --neon-green: #00ff88;
+      }
+      :root.light {
+        --cobalt: #0891b2;
+        --cobalt-dim: #0e7490;
+        --bg-dark: #f8fafc;
+        --bg-card: #f1f5f9;
+        --text: #1e293b;
+        --text-dim: #64748b;
+        --accent: #e11d48;
+        --success: #059669;
+        --warning: #d97706;
+        --glow: rgba(8, 145, 178, 0.3);
+        --border: rgba(8, 145, 178, 0.2);
+        --neon-pink: #db2777;
+        --neon-cyan: #0891b2;
+        --neon-purple: #7c3aed;
+        --neon-green: #059669;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { font-family: 'Outfit', sans-serif; background: var(--bg-dark); color: var(--text); scroll-behavior: smooth; }
+      body { min-height: 100vh; position: relative; overflow-x: hidden; }
+      .skip-link { position: absolute; top: -40px; left: 0; background: var(--cobalt); color: var(--bg-dark); padding: 8px 16px; z-index: 10000; text-decoration: none; font-family: 'JetBrains Mono', monospace; transition: top 0.2s; }
+      .skip-link:focus { top: 0; }
+      .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 2px; background: var(--cobalt); z-index: 1001; box-shadow: 0 0 10px var(--cobalt); }
+      .logic-gate-nav { display: grid; padding: 0.5rem 2rem; border-bottom: 1px solid var(--border); background: var(--bg-dark); position: sticky; top: 0; z-index: 100; }
+      .circuit-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.15; }
+      .circuit-line { fill: none; stroke: var(--cobalt); stroke-width: 2; }
+      .data-bead { fill: var(--cobalt); filter: drop-shadow(0 0 6px var(--cobalt)); }
+      .nav-content { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
+      .nav-links { display: flex; gap: 2rem; align-items: center; }
+      .nav-node { display: flex; align-items: center; gap: 0.4rem; text-decoration: none; }
+      .node-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cobalt); opacity: 0.3; }
+      .node-label { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-dim); }
+      .nav-node:hover .node-dot { opacity: 1; box-shadow: 0 0 6px var(--cobalt); }
+      .nav-node:hover .node-label { color: var(--cobalt); }
+      .logo { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; color: var(--cobalt); text-decoration: none; text-shadow: 0 0 10px var(--glow); }
+      .theme-btn { background: transparent; border: 1px solid var(--border); color: var(--cobalt); cursor: pointer; border-radius: 4px; padding: 4px 8px; }
+      main { max-width: 1200px; margin: 0 auto; padding: 3rem; animation: fadeIn 0.3s ease-out; }
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      footer { text-align: center; padding: 2rem; font-family: 'JetBrains Mono', monospace; color: var(--text-dim); }
+      .terminal-prompt { color: var(--cobalt); }
+      pre.mermaid { display: flex; justify-content: center; margin: 2rem 0; padding: 1rem; background: transparent; border: none; overflow: auto; }
+      pre.mermaid[data-processed] svg { max-width: 100%; height: auto; }
+      pre.mermaid svg .node rect, pre.mermaid svg .node polygon { fill: var(--bg-card) !important; stroke: var(--cobalt) !important; }
+      pre.mermaid svg text { fill: var(--text) !important; }
+      pre.mermaid svg .edgePath path { stroke: var(--cobalt) !important; }
+      @media (max-width: 768px) { .circuit-svg, .node-label { display: none; } main { padding: 1.5rem; } .nav-links { gap: 1rem; } }
+    </style><script type="module">
       await new Promise(r => setTimeout(r, 0));
       
       async function initMermaid() {
@@ -46,8 +138,7 @@
       if (theme === 'light') {
         document.documentElement.classList.add('light');
       }
-    </script><style>:root{--cobalt: #00d4ff;--cobalt-dim: #0088aa;--bg-dark: #0a0a0f;--bg-card: #12121a;--text: #e0e0e0;--text-dim: #666;--accent: #ff3366;--success: #00ff88;--warning: #ffaa00;--glow: rgba(0, 212, 255, .4);--border: rgba(0, 212, 255, .15);--neon-pink: #ff0080;--neon-cyan: #00ffff;--neon-purple: #a855f7;--neon-green: #00ff88}:root.light{--cobalt: #0891b2;--cobalt-dim: #0e7490;--bg-dark: #f8fafc;--bg-card: #f1f5f9;--text: #1e293b;--text-dim: #64748b;--accent: #e11d48;--success: #059669;--warning: #d97706;--glow: rgba(8, 145, 178, .3);--border: rgba(8, 145, 178, .2);--neon-pink: #db2777;--neon-cyan: #0891b2;--neon-purple: #7c3aed;--neon-green: #059669}*{margin:0;padding:0;box-sizing:border-box}html{font-family:Outfit,sans-serif;background:var(--bg-dark);color:var(--text);scroll-behavior:smooth}body{min-height:100vh;position:relative;overflow-x:hidden}.skip-link{position:absolute;top:-40px;left:0;background:var(--cobalt);color:var(--bg-dark);padding:8px 16px;z-index:10000;text-decoration:none;font-family:JetBrains Mono,monospace;transition:top .2s}.skip-link:focus{top:0}.scroll-progress{position:fixed;top:0;left:0;width:0%;height:2px;background:var(--cobalt);z-index:1001;box-shadow:0 0 10px var(--cobalt)}.logic-gate-nav{display:grid;padding:.5rem 2rem;border-bottom:1px solid var(--border);background:var(--bg-dark);position:sticky;top:0;z-index:100}.circuit-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.15}.circuit-line{fill:none;stroke:var(--cobalt);stroke-width:2}.data-bead{fill:var(--cobalt);filter:drop-shadow(0 0 6px var(--cobalt))}.nav-content{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}.nav-links{display:flex;gap:2rem;align-items:center}.nav-node{display:flex;align-items:center;gap:.4rem;text-decoration:none}.node-dot{width:6px;height:6px;border-radius:50%;background:var(--cobalt);opacity:.3}.node-label{font-family:JetBrains Mono,monospace;font-size:.8rem;color:var(--text-dim)}.nav-node:hover .node-dot{opacity:1;box-shadow:0 0 6px var(--cobalt)}.nav-node:hover .node-label{color:var(--cobalt)}.logo{font-family:JetBrains Mono,monospace;font-size:1.5rem;font-weight:700;color:var(--cobalt);text-decoration:none;text-shadow:0 0 10px var(--glow)}.theme-btn{background:transparent;border:1px solid var(--border);color:var(--cobalt);cursor:pointer;border-radius:4px;padding:4px 8px}main{max-width:1200px;margin:0 auto;padding:3rem;animation:fadeIn .3s ease-out}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}footer{text-align:center;padding:2rem;font-family:JetBrains Mono,monospace;color:var(--text-dim)}.terminal-prompt{color:var(--cobalt)}pre.mermaid{display:flex;justify-content:center;margin:2rem 0;padding:1rem;background:transparent;border:none;overflow:auto}pre.mermaid[data-processed] svg{max-width:100%;height:auto}pre.mermaid svg .node rect,pre.mermaid svg .node polygon{fill:var(--bg-card)!important;stroke:var(--cobalt)!important}pre.mermaid svg text{fill:var(--text)!important}pre.mermaid svg .edgePath path{stroke:var(--cobalt)!important}@media(max-width:768px){.circuit-svg,.node-label{display:none}main{padding:1.5rem}.nav-links{gap:1rem}}
-.log-post[data-astro-cid-w5bdutce]{max-width:800px;margin:0 auto}.log-header[data-astro-cid-w5bdutce]{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid rgba(0,212,255,.15)}.log-meta[data-astro-cid-w5bdutce]{display:flex;justify-content:space-between;font-family:JetBrains Mono,monospace;font-size:.8rem;color:var(--text-dim);margin-bottom:.5rem}.log-id[data-astro-cid-w5bdutce]{color:var(--cobalt)}.log-title[data-astro-cid-w5bdutce]{font-size:2rem;font-weight:900;color:var(--text);margin-bottom:1rem;line-height:1.2}.log-info[data-astro-cid-w5bdutce]{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}.reading-time[data-astro-cid-w5bdutce]{font-family:JetBrains Mono,monospace;font-size:.75rem;color:var(--cobalt);background:#00d4ff1a;padding:.25rem .5rem;border-radius:2px}.log-tags[data-astro-cid-w5bdutce]{display:flex;gap:.5rem;flex-wrap:wrap}.tag[data-astro-cid-w5bdutce]{font-family:JetBrains Mono,monospace;font-size:.75rem;color:var(--text-dim);background:#00d4ff1a;padding:.25rem .5rem;border-radius:2px}.log-content[data-astro-cid-w5bdutce]{line-height:1.8;font-size:1.05rem}.log-content[data-astro-cid-w5bdutce] h2{font-size:1.5rem;color:var(--cobalt);margin:2rem 0 1rem;font-weight:700}.log-content[data-astro-cid-w5bdutce] h3{font-size:1.2rem;color:var(--text);margin:1.5rem 0 .5rem}.log-content[data-astro-cid-w5bdutce] p{margin:1rem 0;color:var(--text)}.log-content[data-astro-cid-w5bdutce] ul,.log-content[data-astro-cid-w5bdutce] ol{margin:1rem 0;padding-left:1.5rem}.log-content[data-astro-cid-w5bdutce] li{margin:.5rem 0;color:var(--text)}.log-content[data-astro-cid-w5bdutce] code{font-family:JetBrains Mono,monospace;background:var(--bg-card);padding:.2rem .4rem;border-radius:2px;font-size:.9rem;color:var(--accent)}.log-content[data-astro-cid-w5bdutce] pre{background:var(--bg-card);padding:1rem;border-radius:4px;overflow-x:auto;margin:1rem 0;border:1px solid rgba(0,212,255,.1)}.log-content[data-astro-cid-w5bdutce] pre code{background:none;padding:0;color:var(--text)}.log-content[data-astro-cid-w5bdutce] blockquote{border-left:3px solid var(--cobalt);padding-left:1rem;margin:1rem 0;color:var(--text-dim);font-style:italic}.log-content[data-astro-cid-w5bdutce] strong{color:var(--cobalt);font-weight:700}.log-content[data-astro-cid-w5bdutce] hr{border:none;border-top:1px solid rgba(0,212,255,.1);margin:2rem 0}.log-content[data-astro-cid-w5bdutce] a{color:var(--cobalt);text-decoration:none}.log-content[data-astro-cid-w5bdutce] a:hover{text-decoration:underline}.log-content[data-astro-cid-w5bdutce] table{width:100%;border-collapse:collapse;margin:1rem 0}.log-content[data-astro-cid-w5bdutce] th,.log-content[data-astro-cid-w5bdutce] td{border:1px solid rgba(0,212,255,.1);padding:.5rem;text-align:left}.log-content[data-astro-cid-w5bdutce] th{background:#00d4ff0d;font-weight:700}.log-footer[data-astro-cid-w5bdutce]{margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(0,212,255,.1)}.back-link[data-astro-cid-w5bdutce]{font-family:JetBrains Mono,monospace;color:var(--cobalt);text-decoration:none;font-size:.9rem}.back-link[data-astro-cid-w5bdutce]:hover{text-decoration:underline}
+    </script><style>.log-post[data-astro-cid-w5bdutce]{max-width:800px;margin:0 auto}.log-header[data-astro-cid-w5bdutce]{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid rgba(0,212,255,.15)}.log-meta[data-astro-cid-w5bdutce]{display:flex;justify-content:space-between;font-family:JetBrains Mono,monospace;font-size:.8rem;color:var(--text-dim);margin-bottom:.5rem}.log-id[data-astro-cid-w5bdutce]{color:var(--cobalt)}.log-title[data-astro-cid-w5bdutce]{font-size:2rem;font-weight:900;color:var(--text);margin-bottom:1rem;line-height:1.2}.log-info[data-astro-cid-w5bdutce]{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}.reading-time[data-astro-cid-w5bdutce]{font-family:JetBrains Mono,monospace;font-size:.75rem;color:var(--cobalt);background:#00d4ff1a;padding:.25rem .5rem;border-radius:2px}.log-tags[data-astro-cid-w5bdutce]{display:flex;gap:.5rem;flex-wrap:wrap}.tag[data-astro-cid-w5bdutce]{font-family:JetBrains Mono,monospace;font-size:.75rem;color:var(--text-dim);background:#00d4ff1a;padding:.25rem .5rem;border-radius:2px}.log-content[data-astro-cid-w5bdutce]{line-height:1.8;font-size:1.05rem}.log-content[data-astro-cid-w5bdutce] h2{font-size:1.5rem;color:var(--cobalt);margin:2rem 0 1rem;font-weight:700}.log-content[data-astro-cid-w5bdutce] h3{font-size:1.2rem;color:var(--text);margin:1.5rem 0 .5rem}.log-content[data-astro-cid-w5bdutce] p{margin:1rem 0;color:var(--text)}.log-content[data-astro-cid-w5bdutce] ul,.log-content[data-astro-cid-w5bdutce] ol{margin:1rem 0;padding-left:1.5rem}.log-content[data-astro-cid-w5bdutce] li{margin:.5rem 0;color:var(--text)}.log-content[data-astro-cid-w5bdutce] code{font-family:JetBrains Mono,monospace;background:var(--bg-card);padding:.2rem .4rem;border-radius:2px;font-size:.9rem;color:var(--accent)}.log-content[data-astro-cid-w5bdutce] pre{background:var(--bg-card);padding:1rem;border-radius:4px;overflow-x:auto;margin:1rem 0;border:1px solid rgba(0,212,255,.1)}.log-content[data-astro-cid-w5bdutce] pre code{background:none;padding:0;color:var(--text)}.log-content[data-astro-cid-w5bdutce] blockquote{border-left:3px solid var(--cobalt);padding-left:1rem;margin:1rem 0;color:var(--text-dim);font-style:italic}.log-content[data-astro-cid-w5bdutce] strong{color:var(--cobalt);font-weight:700}.log-content[data-astro-cid-w5bdutce] hr{border:none;border-top:1px solid rgba(0,212,255,.1);margin:2rem 0}.log-content[data-astro-cid-w5bdutce] a{color:var(--cobalt);text-decoration:none}.log-content[data-astro-cid-w5bdutce] a:hover{text-decoration:underline}.log-content[data-astro-cid-w5bdutce] table{width:100%;border-collapse:collapse;margin:1rem 0}.log-content[data-astro-cid-w5bdutce] th,.log-content[data-astro-cid-w5bdutce] td{border:1px solid rgba(0,212,255,.1);padding:.5rem;text-align:left}.log-content[data-astro-cid-w5bdutce] th{background:#00d4ff0d;font-weight:700}.log-footer[data-astro-cid-w5bdutce]{margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(0,212,255,.1)}.back-link[data-astro-cid-w5bdutce]{font-family:JetBrains Mono,monospace;color:var(--cobalt);text-decoration:none;font-size:.9rem}.back-link[data-astro-cid-w5bdutce]:hover{text-decoration:underline}
 </style></head> <body> <a href="#main-content" class="skip-link">Skip to content</a> <div class="scroll-progress" id="scroll-progress"></div> <nav class="logic-gate-nav"> <svg class="circuit-svg" viewBox="0 0 400 80" preserveAspectRatio="none"> <path class="circuit-line" d="M 20 75 L 20 40 L 380 40"></path> <path class="circuit-line branch-logs" d="M 70 40 L 70 30"></path> <path class="circuit-line branch-stack" d="M 150 40 L 150 30"></path> <path class="circuit-line branch-arch" d="M 230 40 L 230 30"></path> <path class="circuit-line branch-search" d="M 310 40 L 310 30"></path> <circle class="data-bead" cx="20" cy="75" r="4"> <animateMotion dur="3s" repeatCount="indefinite" path="M 20 75 L 20 40 L 380 40"></animateMotion> </circle> </svg> <div class="nav-content"> <a href="/Project-COBALT/" class="logo"> <span class="bracket">[</span>c0balt<span class="bracket">]</span> </a> <div class="nav-links"> <a href="/Project-COBALT/logs" class="nav-node" data-branch="logs"> <span class="node-dot"></span> <span class="node-label">logs</span> </a> <a href="/Project-COBALT/stack" class="nav-node" data-branch="stack"> <span class="node-dot"></span> <span class="node-label">stack</span> </a> <a href="/Project-COBALT/architecture" class="nav-node" data-branch="arch"> <span class="node-dot"></span> <span class="node-label">arch</span> </a> <a href="/Project-COBALT/search" class="nav-node" data-branch="search"> <span class="node-dot"></span> <span class="node-label">search</span> </a> <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme"> <span class="sun-icon">☀</span> <span class="moon-icon">☾</span> </button> <a href="https://github.com/Soumyadeep-Chakravarti" target="_blank" rel="noopener noreferrer" class="nav-node"> <span class="node-dot"></span> <span class="node-label">gh</span> </a> </div> </div> </nav> <main id="main-content">  <article class="log-post" data-astro-cid-w5bdutce> <header class="log-header" data-astro-cid-w5bdutce> <div class="log-meta" data-astro-cid-w5bdutce> <span class="log-id" data-astro-cid-w5bdutce>LOG 0X1-NEXUS-INIT</span> <span class="log-date" data-astro-cid-w5bdutce>November 4, 2025</span> </div> <h1 class="log-title" data-astro-cid-w5bdutce>Log 0x01: Nexus — The First Spark</h1> <div class="log-info" data-astro-cid-w5bdutce> <span class="reading-time" data-astro-cid-w5bdutce>3 min read</span> <div class="log-tags" data-astro-cid-w5bdutce> <span class="tag" data-astro-cid-w5bdutce>#nexus</span><span class="tag" data-astro-cid-w5bdutce>#java</span><span class="tag" data-astro-cid-w5bdutce>#project-panama</span><span class="tag" data-astro-cid-w5bdutce>#inception</span> </div> </div> </header> <div class="log-content" data-astro-cid-w5bdutce> <h1 id="-cobalt-engineering-log-0x01-">[ COBALT Engineering Log 0x01 ]</h1>
 <h2 id="nexus--the-first-spark">Nexus — The First Spark</h2>
 <p><em>November 4, 2025. 2:30 AM. The Nexus repo just got its first commit. It’s alive. It’s breathing. It’s probably going to be a disaster but who cares.</em></p>

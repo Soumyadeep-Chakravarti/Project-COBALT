@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
+import rehypePrettyCode from "rehype-pretty-code";
 
 /**
  * Custom Remark plugin to wrap mermaid code blocks in a <pre> tag.
@@ -20,7 +21,6 @@ function remarkMermaid() {
 export default defineConfig({
   base: "/Project-COBALT/",
 
-  // Updated to your GitHub Pages URL
   site: "https://soumyadeep-chakravarti.github.io/Project-COBALT",
 
   srcDir: "./src",
@@ -33,9 +33,11 @@ export default defineConfig({
     },
   },
   markdown: {
-    // Fixed: remarkMermaid should not be wrapped in double brackets if it has no options
     remarkPlugins: [remarkMermaid, remarkGfm],
-    rehypePlugins: [rehypeSlug],
+    rehypePlugins: [
+      rehypeSlug,
+      [rehypePrettyCode, { theme: { dark: "github-dark", light: "github-light" }, keepBackground: false }]
+    ],
   },
   integrations: [sitemap()],
   vite: {
