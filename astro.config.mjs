@@ -3,17 +3,13 @@ import sitemap from "@astrojs/sitemap";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 
+/**
+ * Custom Remark plugin to wrap mermaid code blocks in a <pre> tag.
+ */
 function remarkMermaid() {
   return function (tree) {
-    console.log(
-      "[remark-mermaid] Processing tree with",
-      tree.children.length,
-      "children",
-    );
     tree.children.forEach((node, i) => {
-      console.log(`[remark-mermaid] Child ${i}:`, node.type, node.lang || "");
       if (node.type === "code" && node.lang === "mermaid") {
-        console.log("[remark-mermaid] Found mermaid at", i);
         const html = `<pre class="mermaid">${node.value}</pre>`;
         tree.children[i] = { type: "html", value: html };
       }
@@ -21,11 +17,12 @@ function remarkMermaid() {
   };
 }
 
-const base = process.env.BASE_URL || "/";
-
 export default defineConfig({
-  base,
-  site: "https://cobalt.engineering",
+  // Set to "/" for root domain deployment (https://soumyadeep-chakravarti.github.io/)
+  base: "/",
+
+  // Updated to your GitHub Pages URL
+  site: "https://soumyadeep-chakravarti.github.io",
 
   srcDir: "./src",
   outDir: "./dist",
@@ -37,7 +34,8 @@ export default defineConfig({
     },
   },
   markdown: {
-    remarkPlugins: [[remarkMermaid], remarkGfm],
+    // Fixed: remarkMermaid should not be wrapped in double brackets if it has no options
+    remarkPlugins: [remarkMermaid, remarkGfm],
     rehypePlugins: [rehypeSlug],
   },
   integrations: [sitemap()],

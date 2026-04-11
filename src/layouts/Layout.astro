@@ -1,14 +1,14 @@
 ---
-// Handle the subfolder path for GitHub Pages deployment
-const base = process.env.NODE_ENV === 'production' ? "/Project-COBALT" : "";
+// Set base to empty string for root-level deployment (https://soumyadeep-chakravarti.github.io/)
+const base = "";
 
 interface Props {
-title: string;
-description?: string;
+  title: string;
+  description?: string;
 }
 
 const { title, description = "The cognitive core of a custom AR-based Operating System. Polyglot infrastructure. 9 languages. 11 layers." } = Astro.props;
-const site = "https://soumyadeep-chakravarti.github.io/Project-COBALT";
+const site = "https://soumyadeep-chakravarti.github.io";
 const socialImage = site + "/og-image.png";
 ---
 
@@ -17,7 +17,7 @@ const socialImage = site + "/og-image.png";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     
@@ -102,23 +102,23 @@ const socialImage = site + "/og-image.png";
       </svg>
       
       <div class="nav-content">
-        <a href={`${base}/`} class="logo">
+        <a href="/" class="logo">
           <span class="bracket">[</span>c0balt<span class="bracket">]</span>
         </a>
         <div class="nav-links">
-          <a href={`${base}/logs`} class="nav-node" data-branch="logs">
+          <a href="/logs" class="nav-node" data-branch="logs">
             <span class="node-dot"></span>
             <span class="node-label">logs</span>
           </a>
-          <a href={`${base}/stack`} class="nav-node" data-branch="stack">
+          <a href="/stack" class="nav-node" data-branch="stack">
             <span class="node-dot"></span>
             <span class="node-label">stack</span>
           </a>
-          <a href={`${base}/architecture`} class="nav-node" data-branch="arch">
+          <a href="/architecture" class="nav-node" data-branch="arch">
             <span class="node-dot"></span>
             <span class="node-label">arch</span>
           </a>
-          <a href={`${base}/search`} class="nav-node" data-branch="search">
+          <a href="/search" class="nav-node" data-branch="search">
             <span class="node-dot"></span>
             <span class="node-label">search</span>
           </a>
@@ -155,7 +155,7 @@ const socialImage = site + "/og-image.png";
       themeBtn?.addEventListener('click', () => {
         const isLight = document.documentElement.classList.toggle('light');
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
-        location.reload(); // Reload ensures Mermaid re-renders with the correct theme
+        location.reload(); 
       });
     </script>
   </body>
@@ -209,7 +209,6 @@ const socialImage = site + "/og-image.png";
 
   body { min-height: 100vh; position: relative; overflow-x: hidden; }
 
-  /* Skip link */
   .skip-link {
     position: absolute; top: -40px; left: 0;
     background: var(--cobalt); color: var(--bg-dark);
@@ -240,13 +239,9 @@ const socialImage = site + "/og-image.png";
   .data-bead { fill: var(--cobalt); filter: drop-shadow(0 0 6px var(--cobalt)); }
 
   .nav-content { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
-
   .nav-links { display: flex; gap: 2rem; align-items: center; }
-
   .nav-node { display: flex; align-items: center; gap: 0.4rem; text-decoration: none; }
-
   .node-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cobalt); opacity: 0.3; }
-
   .node-label { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-dim); }
 
   .nav-node:hover .node-dot { opacity: 1; box-shadow: 0 0 6px var(--cobalt); }
@@ -267,10 +262,8 @@ const socialImage = site + "/og-image.png";
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
   footer { text-align: center; padding: 2rem; font-family: 'JetBrains Mono', monospace; color: var(--text-dim); }
-
   .terminal-prompt { color: var(--cobalt); }
 
-  /* Mermaid diagram styling */
   pre.mermaid {
     display: flex; justify-content: center; margin: 2rem 0;
     padding: 1rem; background: transparent; border: none; overflow: auto;
@@ -278,7 +271,6 @@ const socialImage = site + "/og-image.png";
 
   pre.mermaid[data-processed] svg { max-width: 100%; height: auto; }
 
-  /* Mermaid SVG dynamic colors */
   pre.mermaid svg .node rect, pre.mermaid svg .node polygon { fill: var(--bg-card) !important; stroke: var(--cobalt) !important; }
   pre.mermaid svg text { fill: var(--text) !important; }
   pre.mermaid svg .edgePath path { stroke: var(--cobalt) !important; }
