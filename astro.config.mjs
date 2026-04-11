@@ -4,14 +4,18 @@ import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 
 function remarkMermaid() {
-  return function(tree) {
-    console.log('[remark-mermaid] Processing tree with', tree.children.length, 'children');
+  return function (tree) {
+    console.log(
+      "[remark-mermaid] Processing tree with",
+      tree.children.length,
+      "children",
+    );
     tree.children.forEach((node, i) => {
-      console.log(`[remark-mermaid] Child ${i}:`, node.type, node.lang || '');
-      if (node.type === 'code' && node.lang === 'mermaid') {
-        console.log('[remark-mermaid] Found mermaid at', i);
+      console.log(`[remark-mermaid] Child ${i}:`, node.type, node.lang || "");
+      if (node.type === "code" && node.lang === "mermaid") {
+        console.log("[remark-mermaid] Found mermaid at", i);
         const html = `<pre class="mermaid">${node.value}</pre>`;
-        tree.children[i] = { type: 'html', value: html };
+        tree.children[i] = { type: "html", value: html };
       }
     });
   };
@@ -36,12 +40,11 @@ export default defineConfig({
     remarkPlugins: [[remarkMermaid], remarkGfm],
     rehypePlugins: [rehypeSlug],
   },
-  integrations: [
-    sitemap(),
-  ],
+  integrations: [sitemap()],
   vite: {
     build: {
       chunkSizeWarningLimit: 600,
     },
   },
 });
+
