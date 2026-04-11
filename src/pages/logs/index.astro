@@ -47,17 +47,17 @@ const allTags = [...new Set(logs.flatMap(log => log.data.tags || []))];
 </Layout>
 
 <script>
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const logCards = document.querySelectorAll('.log-card');
+  const filterBtns = document.querySelectorAll('.filter-btn') as NodeListOf<HTMLButtonElement>;
+  const logCards = document.querySelectorAll('.log-card') as NodeListOf<HTMLElement>;
 
-  filterBtns.forEach(btn => {
+  filterBtns.forEach((btn: HTMLButtonElement) => {
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter;
       
-      filterBtns.forEach(b => b.classList.remove('active'));
+      filterBtns.forEach((b: HTMLButtonElement) => b.classList.remove('active'));
       btn.classList.add('active');
 
-      logCards.forEach(card => {
+      logCards.forEach((card: HTMLElement) => {
         const tags = JSON.parse(card.dataset.tags || '[]');
         if (filter === 'all' || tags.includes(filter)) {
           card.style.display = 'flex';

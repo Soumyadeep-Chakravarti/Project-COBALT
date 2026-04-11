@@ -1,18 +1,18 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
 const base = import.meta.env.BASE_URL;
 
 export async function getStaticPaths() {
   const logs = await getCollection('logs');
-  return logs.map(log => ({
+  return logs.map((log: CollectionEntry<'logs'>) => ({
     params: { id: log.id },
     props: { log },
   }));
 }
 
-const { log } = Astro.props;
+const { log } = Astro.props as { log: CollectionEntry<'logs'> };
 const { Content } = await render(log);
 
 const formattedDate = log.data.date.toLocaleDateString('en-US', {
@@ -36,7 +36,7 @@ const readingTime = Math.ceil(wordCount / 200);
       <div class="log-info">
         <span class="reading-time">{readingTime} min read</span>
         <div class="log-tags">
-          {log.data.tags?.map(tag => (
+          {log.data.tags?.map((tag: string) => (
             <span class="tag">#{tag}</span>
           ))}
         </div>

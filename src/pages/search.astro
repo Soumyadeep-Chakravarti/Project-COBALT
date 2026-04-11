@@ -1,12 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 const logs = await getCollection('logs');
-const allTags = [...new Set(logs.flatMap(log => log.data.tags || []))];
-const allCategories = [...new Set(logs.flatMap(log => log.data.categories || []))];
+const allTags = [...new Set(logs.flatMap((log: CollectionEntry<'logs'>) => log.data.tags || []))];
+const allCategories = [...new Set(logs.flatMap((log: CollectionEntry<'logs'>) => log.data.categories || []))];
 
-const searchIndex = logs.map(log => ({
+const searchIndex = logs.map((log: CollectionEntry<'logs'>) => ({
   id: log.id,
   title: log.data.title,
   date: log.data.date.toISOString(),
@@ -61,22 +61,32 @@ const searchIndex = logs.map(log => ({
 </Layout>
 
 <script>
-  import Fuse from 'fuse.js';
+  import Fuse, { type FuseResult } from 'fuse.js';
 
   const base = '/Project-COBALT/';
 
-  function escapeHtml(str) {
+  function escapeHtml(str: string): string {
     const div = document.createElement('div');
     div.textContent = str;
     return div.innerHTML;
   }
 
-  const searchInput = document.getElementById('search-input');
+  interface SearchItem {
+    id: string;
+    title: string;
+    date: string;
+    tags: string[];
+    categories: string[];
+    excerpt: string;
+  }
+
+  const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
   const resultsContainer = document.getElementById('results');
-  const searchIndexEl = document.querySelector('.search-index');
-  const filterTags = document.querySelectorAll('.tag-filter');
+  const searchIndexEl = document.querySelector('.search-index') as HTMLElement | null;
+  const filterTags = document.querySelectorAll('.tag-filter') as NodeListOf<HTMLButtonElement>;
   
-  const searchIndex = JSON.parse(searchIndexEl.dataset.index || '[]');
+  if (!searchIndexEl) throw new Error('Search index element not found');
+  const searchIndex: SearchItem[] = JSON.parse(searchIndexEl.dataset.index || '[]');
   
   const fuse = new Fuse(searchIndex, {
     keys: ['title', 'tags', 'categories', 'excerpt'],
@@ -84,9 +94,9 @@ const searchIndex = logs.map(log => ({
     includeScore: true
   });
 
-  let activeTag = null;
+  let activeTag: string | null = null;
 
-  function formatDate(isoString) {
+  function formatDate(isoString: string): string {
     return new Date(isoString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
@@ -94,7 +104,9 @@ const searchIndex = logs.map(log => ({
     });
   }
 
-  function renderResults(results) {
+  function renderResults(results: FuseResult<SearchItem>[]): void {
+    if (!resultsContainer) return;
+    
     if (results.length === 0) {
       resultsContainer.innerHTML = `
         <div class="results-empty">
@@ -105,7 +117,7 @@ const searchIndex = logs.map(log => ({
       return;
     }
 
-    resultsContainer.innerHTML = results.map(result => `
+    resultsContainer.innerHTML = results.map((result: FuseResult<SearchItem>) => `
       <a href="${base}logs/${escapeHtml(result.item.id)}" class="result-item">
         <div class="result-header">
           <span class="result-id">${escapeHtml(result.item.id.toUpperCase())}</span>
@@ -113,15 +125,17 @@ const searchIndex = logs.map(log => ({
         </div>
         <h3 class="result-title">${escapeHtml(result.item.title)}</h3>
         <div class="result-tags">
-          ${result.item.tags.map(t => `<span class="tag">#${escapeHtml(t)}</span>`).join('')}
+          ${result.item.tags.map((t: string) => `<span class="tag">#${escapeHtml(t)}</span>`).join('')}
         </div>
       </a>
     `).join('');
   }
 
-  searchInput.addEventListener('input', (e) => {
-    const query = e.target.value;
-    if (!query && !activeTag) {
+  searchInput?.addEventListener('input', (e: Event) => {
+    const target = e.target as HTMLInputElement;
+    const query = target.value;
+    
+    if (!query && !activeTag && resultsContainer) {
       resultsContainer.innerHTML = `
         <div class="results-empty">
           <span class="empty-icon">⌕</span>
@@ -134,13 +148,13 @@ const searchIndex = logs.map(log => ({
     let results = fuse.search(query);
     
     if (activeTag) {
-      results = results.filter(r => r.item.tags.includes(activeTag));
+      results = results.filter((r: FuseResult<SearchItem>) => r.item.tags.includes(activeTag as string));
     }
     
     renderResults(results);
   });
 
-  filterTags.forEach(btn => {
+  filterTags.forEach((btn: HTMLButtonElement) => {
     btn.addEventListener('click', () => {
       const tag = btn.getAttribute('data-tag');
       
@@ -148,19 +162,19 @@ const searchIndex = logs.map(log => ({
         activeTag = null;
         btn.classList.remove('active');
       } else {
-        filterTags.forEach(b => b.classList.remove('active'));
+        filterTags.forEach((b: HTMLButtonElement) => b.classList.remove('active'));
         activeTag = tag;
         btn.classList.add('active');
       }
 
-      if (activeTag) {
+      if (activeTag && searchInput) {
         let results = fuse.search(searchInput.value);
-        results = results.filter(r => r.item.tags.includes(activeTag));
+        results = results.filter((r: FuseResult<SearchItem>) => r.item.tags.includes(activeTag as string));
         renderResults(results);
-      } else if (searchInput.value) {
+      } else if (searchInput?.value) {
         const results = fuse.search(searchInput.value);
         renderResults(results);
-      } else {
+      } else if (resultsContainer) {
         resultsContainer.innerHTML = `
           <div class="results-empty">
             <span class="empty-icon">⌕</span>
@@ -171,10 +185,10 @@ const searchIndex = logs.map(log => ({
     });
   });
 
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault();
-      searchInput.focus();
+      searchInput?.focus();
     }
   });
 </script>

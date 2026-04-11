@@ -1,18 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 const base = import.meta.env.BASE_URL;
 const logsCollection = await getCollection('logs');
-const logs = logsCollection
-  .map(log => ({
+
+interface LogEntry {
+  id: string;
+  title: string;
+  date: string;
+  sortDate: Date;
+  desc: string;
+  status: string;
+}
+
+const logs: LogEntry[] = logsCollection
+  .map((log: CollectionEntry<'logs'>) => ({
     id: log.id,
     title: log.data.title.toLowerCase(),
     date: log.data.date.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }),
     sortDate: log.data.date,
-    desc: ''
+    desc: '',
+    status: '🟡'
   }))
-  .sort((a, b) => a.sortDate.valueOf() - b.sortDate.valueOf());
+  .sort((a: LogEntry, b: LogEntry) => a.sortDate.valueOf() - b.sortDate.valueOf());
 
 const descMap: Record<string, string> = {
   '0x01': 'started building the bridge',
@@ -26,7 +37,7 @@ const descMap: Record<string, string> = {
   '0x08': 'nexus rebuild with new architecture',
 };
 
-logs.forEach(log => {
+logs.forEach((log: LogEntry) => {
   log.desc = descMap[log.id] || '';
   log.status = '🟡';
 });
