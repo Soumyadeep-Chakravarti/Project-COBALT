@@ -1,0 +1,17 @@
+#Project COBALT Python Blueprint Dependencies
+
+#PyYAML is required for parsing and writing YAML configuration files,
+
+#utilized by src/L3_guardian/config_manager.py (for Go/Java/Elixir configs).
+
+PyYAML
+
+#TOML is required for parsing and writing TOML configuration files,
+
+#utilized by src/L3_guardian/config_manager.py (especially for Rust Cargo.toml).
+
+toml
+
+#Note: All other imports (os, time, shutil, subprocess, hashlib, configparser, etc.)
+
+#are part of the Python standard library and do not require separate installation.
