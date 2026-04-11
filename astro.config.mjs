@@ -1,18 +1,31 @@
 import { defineConfig } from "astro/config";
-import mermaid from "astro-mermaid";
+import sitemap from "@astrojs/sitemap";
 import remarkGfm from "remark-gfm";
-import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
 
-export default defineConfig({
-  // Base URL for GitHub Pages (Repo name with leading slash)
-  base: "/Project-COBALT",
-  // Your GitHub Pages URL
-  site: "https://Soumyadeep-Chakravarti.github.io",
+function remarkMermaid() {
+  return function(tree) {
+    console.log('[remark-mermaid] Processing tree with', tree.children.length, 'children');
+    tree.children.forEach((node, i) => {
+      console.log(`[remark-mermaid] Child ${i}:`, node.type, node.lang || '');
+      if (node.type === 'code' && node.lang === 'mermaid') {
+        console.log('[remark-mermaid] Found mermaid at', i);
+        const html = `<pre class="mermaid">${node.value}</pre>`;
+        tree.children[i] = { type: 'html', value: html };
+      }
+    });
+  };
+}
 
-  srcDir: "./docs/src",
+const base = process.env.BASE_URL || "/";
+
+export default defineConfig({
+  base,
+  site: "https://cobalt.engineering",
+
+  srcDir: "./src",
   outDir: "./dist",
-  publicDir: "./docs/public",
+  publicDir: "./public",
 
   image: {
     service: {
@@ -20,14 +33,15 @@ export default defineConfig({
     },
   },
   markdown: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeHighlight, rehypeSlug],
+    remarkPlugins: [[remarkMermaid], remarkGfm],
+    rehypePlugins: [rehypeSlug],
   },
-  integrations: [mermaid()],
+  integrations: [
+    sitemap(),
+  ],
   vite: {
     build: {
       chunkSizeWarningLimit: 600,
     },
   },
 });
-

@@ -4,6 +4,11 @@ on:
   push:
     branches: [ "cobalt-blogs" ]
   workflow_dispatch:
+    inputs:
+      base:
+        description: 'Base URL (e.g. / for root, /Project-COBALT for subfolder)'
+        required: false
+        default: '/'
 
 permissions:
   contents: read
@@ -32,6 +37,8 @@ jobs:
 
       - name: Build Astro
         run: npm run build
+        env:
+          BASE_URL: ${{ github.event.inputs.base || '/' }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

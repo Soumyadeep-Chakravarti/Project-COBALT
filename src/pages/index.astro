@@ -1,0 +1,431 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const logsCollection = await getCollection('logs');
+const logs = logsCollection
+  .map(log => ({
+    id: log.id,
+    title: log.data.title.toLowerCase(),
+    date: log.data.date.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+    sortDate: log.data.date,
+    desc: ''
+  }))
+  .sort((a, b) => a.sortDate.valueOf() - b.sortDate.valueOf());
+
+const descMap: Record<string, string> = {
+  '0x01': 'started building the bridge',
+  '0x02': 'hit the python wall',
+  '0x03': 'realized python memory is the enemy',
+  '0x07': 'started building pyjx to talk to java',
+  '0x04': 'while building pyjx, realized we need pyprobe first',
+  '0x05': 'cleaned up the mess',
+  '0x06': 'x-ray phase complete',
+  '0x00': 'wrote down the vision after everything',
+  '0x08': 'nexus rebuild with new architecture',
+};
+
+logs.forEach(log => {
+  log.desc = descMap[log.id] || '';
+  log.status = '🟡';
+});
+
+const specialists = [
+  { emoji: '🦀', name: 'guard', lang: 'rust', layer: 'L04', status: '🔴', repo: 'rust-guardian' },
+  { emoji: '🔌', name: 'mechanic', lang: 'c', layer: 'L01', status: '🔴', repo: 'c-mechanic' },
+  { emoji: '🚀', name: 'dispatcher', lang: 'go', layer: 'L06', status: '🔴', repo: 'go-dispatcher' },
+  { emoji: '☕', name: 'nexus', lang: 'java 25', layer: 'L03', status: '🟡', repo: 'nexus' },
+  { emoji: '🐍', name: 'researcher', lang: 'python', layer: 'L05', status: '🔴', repo: 'py-researcher' },
+  { emoji: '💧', name: 'medic', lang: 'elixir', layer: 'L09', status: '🔴', repo: 'elixir-medic' },
+  { emoji: 'λ', name: 'logic', lang: 'haskell', layer: 'L07', status: '🔴', repo: 'haskell-logic' },
+  { emoji: '🟢', name: 'scientist', lang: 'julia', layer: 'L06', status: '🔴', repo: 'julia-scientist' },
+  { emoji: '🌙', name: 'ghost', lang: 'lua', layer: 'L10', status: '🔴', repo: 'lua-ghost' },
+];
+
+const stack = [
+  { name: 'pyprobe', lang: 'python/c', status: '🟡', repo: 'pyprobe', desc: 'memory introspection - complete' },
+  { name: 'pyjx', lang: 'python/java', status: '🔄', repo: 'pyjx', desc: 'ffi bridge - building' },
+  { name: 'nexus', lang: 'java 25', status: '🔄', repo: 'nexus', desc: 'the spine - rebuilding' },
+];
+---
+
+<Layout title="Home" description="The polyglot infrastructure project. 9 languages. 11 layers. One mission to build a custom AR Operating System.">
+  <header class="hero">
+    <h1 class="title">
+      <span class="bracket">[</span>c0balt<span class="bracket">]</span>
+    </h1>
+    <p class="tagline">abstraction is a weapon. use it.</p>
+    <p class="mission">
+      polyglot infrastructure. 9 languages. 11 layers.
+    </p>
+  </header>
+
+  <section class="section">
+    <h2 class="section-title">
+      <span class="hex">//</span> the specialists
+    </h2>
+    <div class="specialist-grid">
+      {specialists.map(s => (
+        <div class="specialist-card">
+          <div class="specialist-header">
+            <span class="emoji">{s.emoji}</span>
+            <span class="status" data-status={s.status}>{s.status}</span>
+          </div>
+          <div class="specialist-name">{s.name}</div>
+          <div class="specialist-meta">
+            <span class="lang">{s.lang}</span>
+            <span class="layer">{s.layer}</span>
+          </div>
+          <a href={`https://github.com/Soumyadeep-Chakravarti/${s.repo}`} target="_blank" rel="noopener noreferrer" class="repo-link">
+            → {s.repo}
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">
+      <span class="hex">//</span> the foundation (what actually works)
+    </h2>
+    <div class="stack-grid">
+      {stack.map(s => (
+        <div class="stack-card">
+          <div class="stack-header">
+            <span class="stack-name">{s.name}</span>
+            <span class="status" data-status={s.status}>{s.status}</span>
+          </div>
+          <div class="stack-desc">{s.desc}</div>
+          <div class="stack-meta">
+            <span class="lang">{s.lang}</span>
+            <a href={`https://github.com/Soumyadeep-Chakravarti/${s.repo}`} target="_blank" rel="noopener noreferrer" class="repo-link">
+              ↗ {s.repo}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">
+      <span class="hex">//</span> the logs (2am brain dumps)
+    </h2>
+    <div class="logs-table">
+      <div class="logs-header">
+        <span>id</span>
+        <span>title</span>
+        <span>when</span>
+        <span>what</span>
+      </div>
+      {logs.map(log => (
+        <a href={`/logs/${log.id}`} class="log-row">
+          <span class="log-id">{log.id}</span>
+          <span class="log-title">{log.title}</span>
+          <span class="log-date">{log.date}</span>
+          <span class="log-desc">{log.desc}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="cta">
+    <p>"they said it was impossible.</p>
+    <p>i said their imagination was limited by their window manager."</p>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 4rem 0;
+    position: relative;
+  }
+
+  .title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    color: var(--cobalt);
+    text-shadow: 0 0 40px var(--glow), 0 0 80px var(--glow);
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  .bracket {
+    color: var(--text-dim);
+  }
+
+  .tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--neon-pink);
+    margin: 1rem 0;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--neon-pink);
+  }
+
+  .mission {
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+
+  .section {
+    margin: 4rem 0;
+  }
+
+  .section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--cobalt);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-shadow: 0 0 10px var(--glow);
+  }
+
+  .hex {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .specialist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .specialist-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out backwards;
+  }
+
+  .specialist-card:nth-child(1) { animation-delay: 0.05s; }
+  .specialist-card:nth-child(2) { animation-delay: 0.1s; }
+  .specialist-card:nth-child(3) { animation-delay: 0.15s; }
+  .specialist-card:nth-child(4) { animation-delay: 0.2s; }
+  .specialist-card:nth-child(5) { animation-delay: 0.25s; }
+  .specialist-card:nth-child(6) { animation-delay: 0.3s; }
+  .specialist-card:nth-child(7) { animation-delay: 0.35s; }
+  .specialist-card:nth-child(8) { animation-delay: 0.4s; }
+  .specialist-card:nth-child(9) { animation-delay: 0.45s; }
+
+  .specialist-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--cobalt), var(--neon-purple));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .specialist-card:hover {
+    border-color: var(--cobalt);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 30px var(--glow), 0 0 50px var(--glow);
+  }
+
+  .specialist-card:hover::before {
+    opacity: 1;
+  }
+
+  .specialist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .emoji {
+    font-size: 1.5rem;
+  }
+
+  .status {
+    font-size: 0.8rem;
+  }
+
+  .specialist-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .specialist-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  .repo-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--cobalt);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .repo-link:hover {
+    opacity: 1;
+  }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .stack-card {
+    background: var(--bg-card);
+    border: 1px solid var(--neon-green);
+    padding: 1.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-out backwards;
+  }
+
+  .stack-card:nth-child(1) { animation-delay: 0.2s; }
+  .stack-card:nth-child(2) { animation-delay: 0.3s; }
+
+  .stack-card:hover {
+    border-color: var(--neon-green);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 30px rgba(0, 255, 136, 0.2), 0 0 50px rgba(0, 255, 136, 0.15);
+  }
+
+  .stack-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .stack-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--neon-green);
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+  }
+
+  .stack-desc {
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .stack-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+  }
+
+  .lang {
+    color: var(--text-dim);
+  }
+
+  .logs-table {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .logs-header {
+    display: grid;
+    grid-template-columns: 60px 1fr 100px 1fr;
+    padding: 1rem;
+    background: var(--glow);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+
+  .log-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 100px 1fr;
+    padding: 1rem;
+    border-top: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+  }
+
+  .log-desc {
+    color: var(--text-dim);
+    font-size: 0.7rem;
+  }
+
+  .log-row:hover {
+    background: var(--glow);
+    box-shadow: inset 0 0 20px var(--glow);
+  }
+
+  .log-id {
+    color: var(--cobalt);
+    text-shadow: 0 0 5px var(--glow);
+  }
+
+  .log-title {
+    color: var(--text);
+  }
+
+  .log-date {
+    color: var(--text-dim);
+  }
+
+  .log-status {
+    color: var(--success);
+  }
+
+  .cta {
+    text-align: center;
+    margin: 4rem 0;
+    padding: 2rem;
+    border: 1px solid var(--neon-pink);
+    border-radius: 4px;
+    background: rgba(255, 0, 128, 0.05);
+  }
+
+  .cta p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--neon-pink);
+    font-style: italic;
+    text-shadow: 0 0 10px rgba(255, 0, 128, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2rem;
+    }
+    .logs-header, .log-row {
+      grid-template-columns: 60px 1fr 80px;
+    }
+    .log-status {
+      display: none;
+    }
+  }
+</style>
