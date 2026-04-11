@@ -1,0 +1,115 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v6.1.5"><title>Log 0x07: PyProbe — Full Type Support and Infrastructure | c0balt</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"><script>
+      const theme = localStorage.getItem('theme') || 'dark';
+      if (theme === 'light') {
+        document.documentElement.classList.add('light');
+      }
+    </script><link rel="stylesheet" href="/_astro/Layout.BCLMPq3h.css">
+<style>.log-post[data-astro-cid-v3d7w2ur]{max-width:800px;margin:0 auto}.log-header[data-astro-cid-v3d7w2ur]{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid rgba(0,212,255,.15)}.log-meta[data-astro-cid-v3d7w2ur]{display:flex;justify-content:space-between;font-family:JetBrains Mono,monospace;font-size:.8rem;color:var(--text-dim);margin-bottom:.5rem}.log-id[data-astro-cid-v3d7w2ur]{color:var(--cobalt)}.log-title[data-astro-cid-v3d7w2ur]{font-size:2rem;font-weight:900;color:var(--text);margin-bottom:1rem;line-height:1.2}.log-info[data-astro-cid-v3d7w2ur]{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}.reading-time[data-astro-cid-v3d7w2ur]{font-family:JetBrains Mono,monospace;font-size:.75rem;color:var(--cobalt);background:#00d4ff1a;padding:.25rem .5rem;border-radius:2px}.log-tags[data-astro-cid-v3d7w2ur]{display:flex;gap:.5rem;flex-wrap:wrap}.tag[data-astro-cid-v3d7w2ur]{font-family:JetBrains Mono,monospace;font-size:.75rem;color:var(--text-dim);background:#00d4ff1a;padding:.25rem .5rem;border-radius:2px}.log-content[data-astro-cid-v3d7w2ur]{line-height:1.8;font-size:1.05rem}.log-content[data-astro-cid-v3d7w2ur] h2{font-size:1.5rem;color:var(--cobalt);margin:2rem 0 1rem;font-weight:700}.log-content[data-astro-cid-v3d7w2ur] h3{font-size:1.2rem;color:var(--text);margin:1.5rem 0 .5rem}.log-content[data-astro-cid-v3d7w2ur] p{margin:1rem 0;color:var(--text)}.log-content[data-astro-cid-v3d7w2ur] ul,.log-content[data-astro-cid-v3d7w2ur] ol{margin:1rem 0;padding-left:1.5rem}.log-content[data-astro-cid-v3d7w2ur] li{margin:.5rem 0;color:var(--text)}.log-content[data-astro-cid-v3d7w2ur] code{font-family:JetBrains Mono,monospace;background:var(--bg-card);padding:.2rem .4rem;border-radius:2px;font-size:.9rem;color:var(--accent)}.log-content[data-astro-cid-v3d7w2ur] pre{background:var(--bg-card);padding:1rem;border-radius:4px;overflow-x:auto;margin:1rem 0;border:1px solid rgba(0,212,255,.1)}.log-content[data-astro-cid-v3d7w2ur] pre code{background:none;padding:0;color:var(--text)}.log-content[data-astro-cid-v3d7w2ur] blockquote{border-left:3px solid var(--cobalt);padding-left:1rem;margin:1rem 0;color:var(--text-dim);font-style:italic}.log-content[data-astro-cid-v3d7w2ur] strong{color:var(--cobalt);font-weight:700}.log-content[data-astro-cid-v3d7w2ur] hr{border:none;border-top:1px solid rgba(0,212,255,.1);margin:2rem 0}.log-content[data-astro-cid-v3d7w2ur] a{color:var(--cobalt);text-decoration:none}.log-content[data-astro-cid-v3d7w2ur] a:hover{text-decoration:underline}.log-content[data-astro-cid-v3d7w2ur] table{width:100%;border-collapse:collapse;margin:1rem 0}.log-content[data-astro-cid-v3d7w2ur] th,.log-content[data-astro-cid-v3d7w2ur] td{border:1px solid rgba(0,212,255,.1);padding:.5rem;text-align:left}.log-content[data-astro-cid-v3d7w2ur] th{background:#00d4ff0d;font-weight:700}.log-footer[data-astro-cid-v3d7w2ur]{margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(0,212,255,.1)}.back-link[data-astro-cid-v3d7w2ur]{font-family:JetBrains Mono,monospace;color:var(--cobalt);text-decoration:none;font-size:.9rem}.back-link[data-astro-cid-v3d7w2ur]:hover{text-decoration:underline}
+</style><script type="module" src="/_astro/page.pNpnv05-.js"></script></head> <body> <div class="scroll-progress" id="scroll-progress"></div> <nav class="logic-gate-nav"> <!-- Main trunk SVG --> <svg class="circuit-svg" viewBox="0 0 400 80" preserveAspectRatio="none"> <!-- Main trunk line --> <path class="circuit-line" d="M 20 75 L 20 40 L 380 40"></path> <!-- Branch to logs --> <path class="circuit-line branch-logs" d="M 70 40 L 70 30"></path> <!-- Branch to stack --> <path class="circuit-line branch-stack" d="M 150 40 L 150 30"></path> <!-- Branch to arch --> <path class="circuit-line branch-arch" d="M 230 40 L 230 30"></path> <!-- Branch to search --> <path class="circuit-line branch-search" d="M 310 40 L 310 30"></path> <!-- Active glow bead --> <circle class="data-bead" cx="20" cy="75" r="4"> <animateMotion dur="3s" repeatCount="indefinite" path="M 20 75 L 20 40 L 380 40"></animateMotion> </circle> </svg> <div class="nav-content"> <a href="/" class="logo"> <span class="bracket">[</span>c0balt<span class="bracket">]</span> </a> <div class="nav-links"> <a href="/logs" class="nav-node" data-branch="logs"> <span class="node-dot"></span> <span class="node-label">logs</span> </a> <a href="/stack" class="nav-node" data-branch="stack"> <span class="node-dot"></span> <span class="node-label">stack</span> </a> <a href="/architecture" class="nav-node" data-branch="arch"> <span class="node-dot"></span> <span class="node-label">arch</span> </a> <a href="/search" class="nav-node" data-branch="search"> <span class="node-dot"></span> <span class="node-label">search</span> </a> <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme"> <span class="sun-icon">☀</span> <span class="moon-icon">☾</span> </button> <a href="https://github.com/Soumyadeep-Chakravarti" target="_blank" class="nav-node"> <span class="node-dot"></span> <span class="node-label">gh</span> </a> </div> </div> </nav> <main>  <article class="log-post" data-astro-cid-v3d7w2ur> <header class="log-header" data-astro-cid-v3d7w2ur> <div class="log-meta" data-astro-cid-v3d7w2ur> <span class="log-id" data-astro-cid-v3d7w2ur>LOG 0X7-PYPROBE-EXTRACTORS</span> <span class="log-date" data-astro-cid-v3d7w2ur>March 27, 2026</span> </div> <h1 class="log-title" data-astro-cid-v3d7w2ur>Log 0x07: PyProbe — Full Type Support and Infrastructure</h1> <div class="log-info" data-astro-cid-v3d7w2ur> <span class="reading-time" data-astro-cid-v3d7w2ur>2 min read</span> <div class="log-tags" data-astro-cid-v3d7w2ur> <span class="tag" data-astro-cid-v3d7w2ur>#python</span><span class="tag" data-astro-cid-v3d7w2ur>#cpython</span><span class="tag" data-astro-cid-v3d7w2ur>#type-extractors</span><span class="tag" data-astro-cid-v3d7w2ur>#cycle-detection</span><span class="tag" data-astro-cid-v3d7w2ur>#ci</span> </div> </div> </header> <div class="log-content" data-astro-cid-v3d7w2ur> <h1 id="-cobalt-engineering-log-0x05-">[ COBALT Engineering Log 0x05 ]</h1>
+<h2 id="pyprobe--full-type-support-and-infrastructure">PyProbe — Full Type Support and Infrastructure</h2>
+<p><em>March 27, 2026. One month since PyProbe’s birth. Time for the big push.</em></p>
+<hr>
+<h2 id="whats-new">What’s New</h2>
+<p>A lot. After a month of on-and-off work, PyProbe got serious upgrades:</p>
+<p><strong>Commits:</strong></p>
+<ul>
+<li><a href="https://github.com/Soumyadeep-Chakravarti/PyProbe/commit/37d94011aba2737b4f308489673c86e2e2874f3c">pyprobe - idea updated, mde docs folder for quick ref of others</a></li>
+</ul>
+<p>And then the big one:</p>
+<ul>
+<li><a href="https://github.com/Soumyadeep-Chakravarti/PyProbe/commit/b221eaf547c44d6d6fca2e92095ec47b75ad9452">pyprobe - Add extended type extractors, CI workflow, and project infrastructure</a></li>
+</ul>
+<hr>
+<h2 id="extended-type-extractors">Extended Type Extractors</h2>
+<p>X-Ray now supports the full CPython type matrix:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Type</th><th>Support</th></tr></thead><tbody><tr><td>int</td><td>✅</td></tr><tr><td>float</td><td>✅</td></tr><tr><td>str</td><td>✅ (multi-encoding: ASCII, Latin-1, UCS-2, UCS-4)</td></tr><tr><td>bytes</td><td>✅</td></tr><tr><td>list</td><td>✅</td></tr><tr><td>tuple</td><td>✅</td></tr><tr><td>dict</td><td>✅ (with cycle detection)</td></tr><tr><td>set</td><td>✅</td></tr></tbody></table>
+<p><strong>The big win:</strong> Cycle detection.</p>
+<p>Python objects can reference each other. Without cycle detection, X-Ray would recurse forever on circular references. Now it tracks visited objects and safely breaks cycles.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Self-referential structure - used to hang forever</span></span>
+<span class="line"><span style="color:#E1E4E8">x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"self"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">None</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">x[</span><span style="color:#9ECBFF">"self"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> x</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">ptr </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pyprobe.pin(x)</span></span>
+<span class="line"><span style="color:#E1E4E8">result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ptr.xray()  </span><span style="color:#6A737D"># Safely returns with cycle marker</span></span></code></pre>
+<hr>
+<h2 id="ci-workflow">CI Workflow</h2>
+<p>PyProbe now has automated testing via GitHub Actions.</p>
+<p>Every push runs:</p>
+<ul>
+<li>Unit tests for all type extractors</li>
+<li>Cycle detection tests</li>
+<li>Memory safety validation</li>
+<li>Python 3.12 and 3.13 compatibility checks</li>
+</ul>
+<hr>
+<h2 id="docs-folder">Docs Folder</h2>
+<p>Added a proper documentation structure:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>docs/</span></span>
+<span class="line"><span>├── INDEX.md         # Home</span></span>
+<span class="line"><span>├── ARCHITECTURE.md  # System design</span></span>
+<span class="line"><span>├── CPYTHON_MEMORY.md # CPython internals reference</span></span>
+<span class="line"><span>├── SAFETY_MODEL.md  # When mutation is safe</span></span>
+<span class="line"><span>├── ROADMAP.md       # Phase timeline</span></span>
+<span class="line"><span>└── CONTRIBUTING.md  # How to help</span></span></code></pre>
+<p>This started as a personal project. Now it’s becoming something publishable.</p>
+<hr>
+<h2 id="the-research-angle">The Research Angle</h2>
+<p>PyProbe isn’t just for Nexus. It’s genuinely interesting from a CS perspective:</p>
+<ul>
+<li><strong>CPython internals</strong> — How does 3.12+ dict layout differ from 3.11?</li>
+<li><strong>Memory overhead</strong> — What’s the real cost of a Python object?</li>
+<li><strong>Safety invariants</strong> — When is mutation actually safe vs. when does it corrupt state?</li>
+</ul>
+<p>I’m thinking about submitting this to arXiv and JOSS eventually.</p>
+<hr>
+<h2 id="status">Status</h2>
+<p>PyProbe X-Ray: Complete<br>
+Type extractors: Full coverage<br>
+CI: Automated<br>
+Documentation: Comprehensive</p>
+<p><strong>PyProbe is ready to be the foundation. Next: PyJX.</strong></p>
+<hr>
+<p><em>Previous: <a href="./0x06-PYJX-INIT.md">Log 0x06: PyJX — The Python-Java Bridge</a></em><br>
+<em>Next: <a href="./0x08-NEXUS-RESURFACE.md">Log 0x08: Nexus Resurfaces</a></em></p> </div> <footer class="log-footer" data-astro-cid-v3d7w2ur> <a href="/" class="back-link" data-astro-cid-v3d7w2ur>← Back to COBALT</a> </footer> </article>  </main> <footer> <span class="terminal-prompt">></span> abstraction is a weapon
+</footer> <script type="module">const t=document.getElementById("scroll-progress");window.addEventListener("scroll",()=>{const e=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;t.style.width=e+"%"});const n=document.getElementById("theme-toggle");n?.addEventListener("click",()=>{const e=document.documentElement.classList.toggle("light");localStorage.setItem("theme",e?"light":"dark")});</script> </body> </html>

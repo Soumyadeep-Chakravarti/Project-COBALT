@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet href="/rss.xsl" type="text/xsl"?><rss version="2.0"><channel><title>c0balt - dev logs</title><description>The cognitive core of a custom AR-based Operating System</description><link>https://cobalt.engineering/</link><language>en-us</language><item><title>Log 0x02: The First Grind</title><link>https://cobalt.engineering/logs/0x2-NEXUS-FIRST-GRIND.md/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x2-NEXUS-FIRST-GRIND.md/</guid><description># [ COBALT Engineering Log 0x01 ]
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet href="/rss.xsl" type="text/xsl"?><rss version="2.0"><channel><title>c0balt - dev logs</title><description>The cognitive core of a custom AR-based Operating System</description><link>https://cobalt.engineering/</link><language>en-us</language><item><title>Log 0x02: The First Grind</title><link>https://cobalt.engineering/logs/0x2-nexus-first-grind/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x2-nexus-first-grind/</guid><description># [ COBALT Engineering Log 0x01 ]
 ## The First Grind
 
 *December 2, 2025. Three weeks of Nexus development. Here&apos;s what&apos;s been breaking and what I&apos;ve learned.*
@@ -6,14 +6,14 @@
 ---
 
 ## The Problem I Didn&apos;t Anticipate
-...</description><pubDate>Tue, 02 Dec 2025 00:00:00 GMT</pubDate><category>Engineering</category><category>Architecture</category><category>nexus</category><category>java</category><category>project-panama</category><category>ffi</category><category>challenges</category></item><item><title>Log 0x00: The Genesis</title><link>https://cobalt.engineering/logs/0x0-GENESIS.md/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x0-GENESIS.md/</guid><description># [ COBALT Engineering Log 0x00 ]
+...</description><pubDate>Tue, 02 Dec 2025 00:00:00 GMT</pubDate><category>Engineering</category><category>Architecture</category><category>nexus</category><category>java</category><category>project-panama</category><category>ffi</category><category>challenges</category></item><item><title>Log 0x00: The Genesis</title><link>https://cobalt.engineering/logs/0x0-genesis/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x0-genesis/</guid><description># [ COBALT Engineering Log 0x00 ]
 ## The Genesis
 
 *It&apos;s 3:00 AM. I&apos;m staring at my Arch config. My &quot;smart&quot; workspace feels dumb. Everything is a wrapper of a wrapper. I want the metal.*
 
 ---
 
-## The P...</description><pubDate>Mon, 03 Nov 2025 00:00:00 GMT</pubDate><category>Engineering</category><category>Architecture</category><category>java</category><category>rust</category><category>polyglot</category><category>ar-os</category><category>vision</category></item><item><title>Log 0x03: The Pivot</title><link>https://cobalt.engineering/logs/0x3-NEXUS-RESTART.md/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x3-NEXUS-RESTART.md/</guid><description># [ COBALT Engineering Log 0x02 ]
+## The P...</description><pubDate>Mon, 03 Nov 2025 00:00:00 GMT</pubDate><category>Engineering</category><category>Architecture</category><category>java</category><category>rust</category><category>polyglot</category><category>ar-os</category><category>vision</category></item><item><title>Log 0x03: The Pivot</title><link>https://cobalt.engineering/logs/0x3-nexus-restart/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x3-nexus-restart/</guid><description># [ COBALT Engineering Log 0x02 ]
 ## The Pivot
 
 *December 23, 2025. Three weeks of hitting the Python wall. Time to rethink everything.*
@@ -22,7 +22,7 @@
 
 ## The Realization
 
-I&apos;ve been trying to solve the wrong p...</description><pubDate>Tue, 23 Dec 2025 00:00:00 GMT</pubDate><category>Engineering</category><category>Architecture</category><category>nexus</category><category>python</category><category>pyprobe</category><category>architecture</category></item><item><title>Log 0x05: PyProbe — Cleaning Up the Chaos</title><link>https://cobalt.engineering/logs/0x5-PYPROBE-DOCS.md/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x5-PYPROBE-DOCS.md/</guid><description># [ COBALT Engineering Log 0x04 ]
+I&apos;ve been trying to solve the wrong p...</description><pubDate>Tue, 23 Dec 2025 00:00:00 GMT</pubDate><category>Engineering</category><category>Architecture</category><category>nexus</category><category>python</category><category>pyprobe</category><category>architecture</category></item><item><title>Log 0x05: PyProbe — Cleaning Up the Chaos</title><link>https://cobalt.engineering/logs/0x5-pyprobe-docs/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x5-pyprobe-docs/</guid><description># [ COBALT Engineering Log 0x04 ]
 ## PyProbe — Cleaning Up the Chaos
 
 *February 28, 2026. Later that same day. Initial code is in. Time to make it readable.*
@@ -31,7 +31,7 @@ I&apos;ve been trying to solve the wrong p...</description><pubDate>Tue, 23 Dec 
 
 ## The Cleanup
 
-After the initial &quot;l...</description><pubDate>Sat, 28 Feb 2026 00:00:00 GMT</pubDate><category>Engineering</category><category>PyProbe</category><category>python</category><category>documentation</category><category>cleanup</category><category>refactoring</category></item><item><title>Log 0x08: Nexus Resurfaces</title><link>https://cobalt.engineering/logs/0x8-NEXUS-RESURFACE.md/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x8-NEXUS-RESURFACE.md/</guid><description># [ COBALT Engineering Log 0x07 ]
+After the initial &quot;l...</description><pubDate>Sat, 28 Feb 2026 00:00:00 GMT</pubDate><category>Engineering</category><category>PyProbe</category><category>python</category><category>documentation</category><category>cleanup</category><category>refactoring</category></item><item><title>Log 0x08: Nexus Resurfaces</title><link>https://cobalt.engineering/logs/0x8-nexus-resurface/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x8-nexus-resurface/</guid><description># [ COBALT Engineering Log 0x07 ]
 ## Nexus Resurfaces — The New Architecture
 
 *April 11, 2026. Four months since Nexus first sparked. The new version is taking shape.*
@@ -40,7 +40,7 @@ After the initial &quot;l...</description><pubDate>Sat, 28 Feb 2026 00:00:00 GMT
 
 ## The Comeback
 
-After the...</description><pubDate>Sat, 11 Apr 2026 00:00:00 GMT</pubDate><category>Engineering</category><category>COBALT</category><category>nexus</category><category>java</category><category>project-panama</category><category>cobalt</category><category>convergence</category></item><item><title>Log 0x04: PyProbe — Memory Introspection From Scratch</title><link>https://cobalt.engineering/logs/0x4-PYPROBE-INIT.md/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x4-PYPROBE-INIT.md/</guid><description># [ COBALT Engineering Log 0x03 ]
+After the...</description><pubDate>Sat, 11 Apr 2026 00:00:00 GMT</pubDate><category>Engineering</category><category>COBALT</category><category>nexus</category><category>java</category><category>project-panama</category><category>cobalt</category><category>convergence</category></item><item><title>Log 0x04: PyProbe — Memory Introspection From Scratch</title><link>https://cobalt.engineering/logs/0x4-pyprobe-init/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x4-pyprobe-init/</guid><description># [ COBALT Engineering Log 0x03 ]
 ## PyProbe — Memory Introspection From Scratch
 
 *February 28, 2026. PyProbe gets its first real code. This is where the rubber meets the road.*
@@ -49,7 +49,7 @@ After the...</description><pubDate>Sat, 11 Apr 2026 00:00:00 GMT</pubDate><categ
 
 ## The Birth
 
-To...</description><pubDate>Sat, 28 Feb 2026 00:00:00 GMT</pubDate><category>Engineering</category><category>PyProbe</category><category>python</category><category>cpython</category><category>memory</category><category>cffi</category><category>introspection</category></item><item><title>Log 0x07: PyProbe — Full Type Support and Infrastructure</title><link>https://cobalt.engineering/logs/0x7-PYPROBE-EXTRACTORS.md/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x7-PYPROBE-EXTRACTORS.md/</guid><description># [ COBALT Engineering Log 0x05 ]
+To...</description><pubDate>Sat, 28 Feb 2026 00:00:00 GMT</pubDate><category>Engineering</category><category>PyProbe</category><category>python</category><category>cpython</category><category>memory</category><category>cffi</category><category>introspection</category></item><item><title>Log 0x07: PyProbe — Full Type Support and Infrastructure</title><link>https://cobalt.engineering/logs/0x7-pyprobe-extractors/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x7-pyprobe-extractors/</guid><description># [ COBALT Engineering Log 0x05 ]
 ## PyProbe — Full Type Support and Infrastructure
 
 *March 27, 2026. One month since PyProbe&apos;s birth. Time for the big push.*
@@ -58,7 +58,7 @@ To...</description><pubDate>Sat, 28 Feb 2026 00:00:00 GMT</pubDate><category>Eng
 
 ## What&apos;s New
 
-A lot. After a month...</description><pubDate>Fri, 27 Mar 2026 00:00:00 GMT</pubDate><category>Engineering</category><category>PyProbe</category><category>python</category><category>cpython</category><category>type-extractors</category><category>cycle-detection</category><category>ci</category></item><item><title>Log 0x01: Nexus — The First Spark</title><link>https://cobalt.engineering/logs/0x1-NEXUS-INIT.md/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x1-NEXUS-INIT.md/</guid><description># [ COBALT Engineering Log 0x00 ]
+A lot. After a month...</description><pubDate>Fri, 27 Mar 2026 00:00:00 GMT</pubDate><category>Engineering</category><category>PyProbe</category><category>python</category><category>cpython</category><category>type-extractors</category><category>cycle-detection</category><category>ci</category></item><item><title>Log 0x01: Nexus — The First Spark</title><link>https://cobalt.engineering/logs/0x1-nexus-init/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x1-nexus-init/</guid><description># [ COBALT Engineering Log 0x00 ]
 ## Nexus — The First Spark
 
 *November 4, 2025. 2:30 AM. The Nexus repo just got its first commit.*
@@ -67,7 +67,7 @@ A lot. After a month...</description><pubDate>Fri, 27 Mar 2026 00:00:00 GMT</pub
 
 ## The Inception
 
-Tonight I started something that might be i...</description><pubDate>Tue, 04 Nov 2025 00:00:00 GMT</pubDate><category>Engineering</category><category>Architecture</category><category>nexus</category><category>java</category><category>project-panama</category><category>inception</category></item><item><title>Log 0x06: PyJX — The Python-Java Bridge</title><link>https://cobalt.engineering/logs/0x6-PYJX-INIT.md/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x6-PYJX-INIT.md/</guid><description># [ COBALT Engineering Log 0x06 ]
+Tonight I started something that might be i...</description><pubDate>Tue, 04 Nov 2025 00:00:00 GMT</pubDate><category>Engineering</category><category>Architecture</category><category>nexus</category><category>java</category><category>project-panama</category><category>inception</category></item><item><title>Log 0x06: PyJX — The Python-Java Bridge</title><link>https://cobalt.engineering/logs/0x6-pyjx-init/</link><guid isPermaLink="true">https://cobalt.engineering/logs/0x6-pyjx-init/</guid><description># [ COBALT Engineering Log 0x06 ]
 ## PyJX — The Python-Java Bridge
 
 *March 1, 2026. PyJX is born. The missing link between PyProbe and Nexus.*
