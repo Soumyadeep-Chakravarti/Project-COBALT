@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
+const base = import.meta.env.BASE_URL;
 const logs = await getCollection('logs');
 const sortedLogs = logs.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
@@ -30,7 +31,7 @@ const allTags = [...new Set(logs.flatMap(log => log.data.tags || []))];
 
   <div class="logs-list" id="logs-list">
     {sortedLogs.map(log => (
-      <a href={`/logs/${log.id}`} class="log-card" data-tags={JSON.stringify(log.data.tags || [])}>
+      <a href={base + `logs/${log.id}`} class="log-card" data-tags={JSON.stringify(log.data.tags || [])}>
         <div class="log-id">{log.id.toUpperCase()}</div>
         <div class="log-info">
           <h2 class="log-title">{log.data.title}</h2>

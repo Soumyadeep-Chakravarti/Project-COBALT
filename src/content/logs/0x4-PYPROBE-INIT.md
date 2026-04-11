@@ -84,5 +84,5 @@ Sanity: Focused. Finally. Something is working. After all this time, something i
 
 ---
 
-*Previous: [Log 0x03: The Pivot](/logs/0x3-nexus-restart)*  
-*Next: [Log 0x05: PyProbe Documentation — Cleaning Up the Chaos](/logs/0x5-pyprobe-docs)*
+*Previous: [Log 0x03: The Pivot](/Project-COBALT/logs/0x3-nexus-restart)*  
+*Next: [Log 0x05: PyProbe Documentation — Cleaning Up the Chaos](/Project-COBALT/logs/0x5-pyprobe-docs)*

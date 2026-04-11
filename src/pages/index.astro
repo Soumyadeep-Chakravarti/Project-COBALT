@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
+const base = import.meta.env.BASE_URL;
 const logsCollection = await getCollection('logs');
 const logs = logsCollection
   .map(log => ({
@@ -119,7 +120,7 @@ const stack = [
         <span>what</span>
       </div>
       {logs.map(log => (
-        <a href={`/logs/${log.id}`} class="log-row">
+        <a href={base + `logs/${log.id}`} class="log-row">
           <span class="log-id">{log.id}</span>
           <span class="log-title">{log.title}</span>
           <span class="log-date">{log.date}</span>

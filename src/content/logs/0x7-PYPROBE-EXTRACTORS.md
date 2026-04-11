@@ -116,5 +116,5 @@ Documentation: Comprehensive. Actual docs. Not just "it works trust me"
 
 ---
 
-*Previous: [Log 0x06: PyJX — The Python-Java Bridge](/logs/0x6-pyjx-init)*  
-*Next: [Log 0x08: Nexus Resurfaces](/logs/0x8-nexus-resurface)*
+*Previous: [Log 0x06: PyJX — The Python-Java Bridge](/Project-COBALT/logs/0x6-pyjx-init)*  
+*Next: [Log 0x08: Nexus Resurfaces](/Project-COBALT/logs/0x8-nexus-resurface)*

@@ -69,5 +69,5 @@ Git history: Slightly messy but manageable. Could be worse.
 
 ---
 
-*Previous: [Log 0x04: PyProbe — Memory Introspection From Scratch](/logs/0x4-pyprobe-init)*  
-*Next: [Log 0x06: PyJX — The Bridge](/logs/0x6-pyjx-init)*
+*Previous: [Log 0x04: PyProbe — Memory Introspection From Scratch](/Project-COBALT/logs/0x4-pyprobe-init)*  
+*Next: [Log 0x06: PyJX — The Bridge](/Project-COBALT/logs/0x6-pyjx-init)*

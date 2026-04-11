@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+const base = import.meta.env.BASE_URL;
 const logs = [
   { id: '0x0-genesis', title: 'genesis', date: 'Nov', desc: 'the vision' },
   { id: '0x1-nexus-init', title: 'nexus init', date: 'Nov', desc: 'started building the bridge' },
@@ -158,7 +159,7 @@ const baseUrl = 'https://github.com/Soumyadeep-Chakravarti';
     </h2>
     <div class="timeline">
       {logs.map((log) => (
-        <a href={`/logs/${log.id}`} class="timeline-node">
+        <a href={base + `logs/${log.id}`} class="timeline-node">
           <span class="timeline-id">{log.id.toUpperCase()}</span>
           <span class="timeline-title">{log.title}</span>
           <span class="timeline-date">{log.date}</span>

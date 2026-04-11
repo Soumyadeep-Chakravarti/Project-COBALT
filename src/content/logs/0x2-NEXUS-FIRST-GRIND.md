@@ -89,5 +89,5 @@ Sanity: Deteriorating. Has been since November. Will probably get worse before i
 
 ---
 
-*Previous: [Log 0x01: Nexus — The First Spark](/logs/0x1-nexus-init)*  
-*Next: [Log 0x03: The Pivot — Restarting with new vision](/logs/0x3-nexus-restart)*
+*Previous: [Log 0x01: Nexus — The First Spark](/Project-COBALT/logs/0x1-nexus-init)*  
+*Next: [Log 0x03: The Pivot — Restarting with new vision](/Project-COBALT/logs/0x3-nexus-restart)*

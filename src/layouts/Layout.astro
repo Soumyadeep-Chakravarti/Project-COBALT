@@ -1,6 +1,5 @@
 ---
-// Set base to empty string for root-level deployment (https://soumyadeep-chakravarti.github.io/)
-const base = "";
+const base = import.meta.env.BASE_URL;
 
 interface Props {
   title: string;
@@ -8,7 +7,7 @@ interface Props {
 }
 
 const { title, description = "The cognitive core of a custom AR-based Operating System. Polyglot infrastructure. 9 languages. 11 layers." } = Astro.props;
-const site = "https://soumyadeep-chakravarti.github.io";
+const site = "https://soumyadeep-chakravarti.github.io/Project-COBALT";
 const socialImage = site + "/og-image.png";
 ---
 
@@ -17,7 +16,7 @@ const socialImage = site + "/og-image.png";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={base + "favicon.svg"} />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     
@@ -102,23 +101,23 @@ const socialImage = site + "/og-image.png";
       </svg>
       
       <div class="nav-content">
-        <a href="/" class="logo">
+        <a href={base} class="logo">
           <span class="bracket">[</span>c0balt<span class="bracket">]</span>
         </a>
         <div class="nav-links">
-          <a href="/logs" class="nav-node" data-branch="logs">
+          <a href={base + "logs"} class="nav-node" data-branch="logs">
             <span class="node-dot"></span>
             <span class="node-label">logs</span>
           </a>
-          <a href="/stack" class="nav-node" data-branch="stack">
+          <a href={base + "stack"} class="nav-node" data-branch="stack">
             <span class="node-dot"></span>
             <span class="node-label">stack</span>
           </a>
-          <a href="/architecture" class="nav-node" data-branch="arch">
+          <a href={base + "architecture"} class="nav-node" data-branch="arch">
             <span class="node-dot"></span>
             <span class="node-label">arch</span>
           </a>
-          <a href="/search" class="nav-node" data-branch="search">
+          <a href={base + "search"} class="nav-node" data-branch="search">
             <span class="node-dot"></span>
             <span class="node-label">search</span>
           </a>

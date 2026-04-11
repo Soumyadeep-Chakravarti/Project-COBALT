@@ -85,5 +85,5 @@ Sanity: Building. Slowly. Piece by piece.
 
 ---
 
-*Previous: [Log 0x05: PyProbe Documentation — Cleaning Up the Chaos](/logs/0x5-pyprobe-docs)*  
-*Next: [Log 0x07: PyProbe — Full Type Support](/logs/0x7-pyprobe-extractors)*
+*Previous: [Log 0x05: PyProbe Documentation — Cleaning Up the Chaos](/Project-COBALT/logs/0x5-pyprobe-docs)*  
+*Next: [Log 0x07: PyProbe — Full Type Support](/Project-COBALT/logs/0x7-pyprobe-extractors)*

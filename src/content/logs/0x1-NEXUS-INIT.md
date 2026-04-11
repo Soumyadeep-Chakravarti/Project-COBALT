@@ -93,4 +93,4 @@ Sanity: Cautiously optimistic. Might regret this in the morning. Will probably s
 
 ---
 
-*Next: [Log 0x02: The First Grind — Nexus takes shape](/logs/0x2-nexus-first-grind)*
+*Next: [Log 0x02: The First Grind — Nexus takes shape](/Project-COBALT/logs/0x2-nexus-first-grind)*

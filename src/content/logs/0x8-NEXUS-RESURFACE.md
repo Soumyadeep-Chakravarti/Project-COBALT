@@ -94,5 +94,5 @@ COBALT: Born. TODAY. The vision has a NAME now.
 
 ---
 
-*Previous: [Log 0x07: PyProbe — Full Type Support](/logs/0x7-pyprobe-extractors)*  
-*Next: [Log 0x09: The Great GitHub Actions Debacle](/logs/0x9-github-deploy)*
+*Previous: [Log 0x07: PyProbe — Full Type Support](/Project-COBALT/logs/0x7-pyprobe-extractors)*  
+*Next: [Log 0x09: The Great GitHub Actions Debacle](/Project-COBALT/logs/0x9-github-deploy)*

@@ -204,4 +204,4 @@ I am typing this at 3 AM having solved a problem that shouldn't exist in 2026. J
 
 ---
 
-*Previous: [Log 0x08: Nexus Resurfaces](/logs/0x8-nexus-resurface)*
+*Previous: [Log 0x08: Nexus Resurfaces](/Project-COBALT/logs/0x8-nexus-resurface)*

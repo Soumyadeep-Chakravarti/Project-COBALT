@@ -63,6 +63,8 @@ const searchIndex = logs.map(log => ({
 <script>
   import Fuse from 'fuse.js';
 
+  const base = '/Project-COBALT/';
+
   function escapeHtml(str) {
     const div = document.createElement('div');
     div.textContent = str;
@@ -104,7 +106,7 @@ const searchIndex = logs.map(log => ({
     }
 
     resultsContainer.innerHTML = results.map(result => `
-      <a href="/logs/${escapeHtml(result.item.id)}" class="result-item">
+      <a href="${base}logs/${escapeHtml(result.item.id)}" class="result-item">
         <div class="result-header">
           <span class="result-id">${escapeHtml(result.item.id.toUpperCase())}</span>
           <span class="result-date">${formatDate(result.item.date)}</span>

@@ -104,5 +104,5 @@ Sanity: Adjusted expectations. Lowered them. They're on the floor now.
 
 ---
 
-*Previous: [Log 0x02: The First Grind](/logs/0x2-nexus-first-grind)*  
-*Next: [Log 0x04: PyProbe — Memory Introspection From Scratch](/logs/0x4-pyprobe-init)*
+*Previous: [Log 0x02: The First Grind](/Project-COBALT/logs/0x2-nexus-first-grind)*  
+*Next: [Log 0x04: PyProbe — Memory Introspection From Scratch](/Project-COBALT/logs/0x4-pyprobe-init)*

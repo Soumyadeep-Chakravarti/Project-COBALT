@@ -111,7 +111,7 @@ The first version of Nexus tried gRPC for Python interop. Clean. Simple. **Slow 
 
 Every call meant serialization. TCP stack overhead. Copying bytes through the kernel. For a system targeting AR latency — actual usable AR, not "wait 2 seconds for your overlay" — this was death.
 
-The gRPC experiment lasted one week. That's a story for [Log 0x03: The Pivot](/logs/0x3-nexus-restart) — where I figured out Python's memory model was the actual enemy all along.
+The gRPC experiment lasted one week. That's a story for [Log 0x03: The Pivot](/Project-COBALT/logs/0x3-nexus-restart) — where I figured out Python's memory model was the actual enemy all along.
 
 ---
 
@@ -135,4 +135,4 @@ Sanity: Questionable. Has been for years.
 
 ---
 
-*The full journey: [See all logs in the Engineering Log index](/logs)*
+*The full journey: [See all logs in the Engineering Log index](/Project-COBALT/logs)*
