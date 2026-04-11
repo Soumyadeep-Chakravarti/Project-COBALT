@@ -1,0 +1,237 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const logs = await getCollection('logs');
+  return logs.map(log => ({
+    params: { id: log.id },
+    props: { log },
+  }));
+}
+
+const { log } = Astro.props;
+const { Content } = await log.render();
+
+const formattedDate = log.data.date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+const wordCount = log.body.split(/\s+/).length;
+const readingTime = Math.ceil(wordCount / 200);
+---
+
+<Layout title={log.data.title}>
+  <article class="log-post">
+    <header class="log-header">
+      <div class="log-meta">
+        <span class="log-id">LOG {log.id.toUpperCase()}</span>
+        <span class="log-date">{formattedDate}</span>
+      </div>
+      <h1 class="log-title">{log.data.title}</h1>
+      <div class="log-info">
+        <span class="reading-time">{readingTime} min read</span>
+        <div class="log-tags">
+          {log.data.tags?.map(tag => (
+            <span class="tag">#{tag}</span>
+          ))}
+        </div>
+      </div>
+    </header>
+    
+    <div class="log-content">
+      <Content />
+    </div>
+    
+    <footer class="log-footer">
+      <a href="/" class="back-link">← Back to COBALT</a>
+    </footer>
+  </article>
+</Layout>
+
+<style>
+  .log-post {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .log-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+  }
+
+  .log-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  .log-id {
+    color: var(--cobalt);
+  }
+
+  .log-title {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .log-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .reading-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--cobalt);
+    background: rgba(0, 212, 255, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+  }
+
+  .log-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    background: rgba(0, 212, 255, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+  }
+
+  .log-content {
+    line-height: 1.8;
+    font-size: 1.05rem;
+  }
+
+  .log-content :global(h2) {
+    font-size: 1.5rem;
+    color: var(--cobalt);
+    margin: 2rem 0 1rem;
+    font-weight: 700;
+  }
+
+  .log-content :global(h3) {
+    font-size: 1.2rem;
+    color: var(--text);
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .log-content :global(p) {
+    margin: 1rem 0;
+    color: var(--text);
+  }
+
+  .log-content :global(ul), .log-content :global(ol) {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .log-content :global(li) {
+    margin: 0.5rem 0;
+    color: var(--text);
+  }
+
+  .log-content :global(code) {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--bg-card);
+    padding: 0.2rem 0.4rem;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    color: var(--accent);
+  }
+
+  .log-content :global(pre) {
+    background: var(--bg-card);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 1rem 0;
+    border: 1px solid rgba(0, 212, 255, 0.1);
+  }
+
+  .log-content :global(pre code) {
+    background: none;
+    padding: 0;
+    color: var(--text);
+  }
+
+  .log-content :global(blockquote) {
+    border-left: 3px solid var(--cobalt);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  .log-content :global(strong) {
+    color: var(--cobalt);
+    font-weight: 700;
+  }
+
+  .log-content :global(hr) {
+    border: none;
+    border-top: 1px solid rgba(0, 212, 255, 0.1);
+    margin: 2rem 0;
+  }
+
+  .log-content :global(a) {
+    color: var(--cobalt);
+    text-decoration: none;
+  }
+
+  .log-content :global(a:hover) {
+    text-decoration: underline;
+  }
+
+  .log-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+  }
+
+  .log-content :global(th), .log-content :global(td) {
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  .log-content :global(th) {
+    background: rgba(0, 212, 255, 0.05);
+    font-weight: 700;
+  }
+
+  .log-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 212, 255, 0.1);
+  }
+
+  .back-link {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--cobalt);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+</style>

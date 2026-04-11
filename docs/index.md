@@ -42,15 +42,15 @@ The complete journey from first commit to present day.
 
 | Log | Title | Date | Status |
 |-----|-------|------|--------|
-| [0x01](./_posts/2025-11-04-log-0x01-nexus-init.md) | Nexus — The First Spark | 2025-11-04 | ✅ |
-| [0x02](./_posts/2025-12-02-log-0x02-nexus-first-grind.md) | The First Grind | 2025-12-02 | ✅ |
-| [0x03](./_posts/2025-12-23-log-0x03-nexus-restart.md) | The Pivot | 2025-12-23 | ✅ |
-| [0x04](./_posts/2026-02-28-log-0x04-pyprobe-init.md) | PyProbe — Memory Introspection | 2026-02-28 | ✅ |
-| [0x05](./_posts/2026-02-28-log-0x05-pyprobe-docs.md) | PyProbe — Cleanup | 2026-02-28 | ✅ |
-| [0x06](./_posts/2026-03-27-log-0x06-pyprobe-extractors.md) | PyProbe — Full Type Support | 2026-03-27 | ✅ |
-| [0x07](./_posts/2026-03-01-log-0x07-pyjx-init.md) | PyJX — The Bridge | 2026-03-01 | ✅ |
-| [0x08](./_posts/2026-04-11-log-0x08-nexus-resurface.md) | Nexus Resurfaces | 2026-04-11 | ✅ |
-| [0x00](./_posts/2026-04-10-log-0x00-genesis.md) | The Genesis (Vision) | 2026-04-10 | ✅ |
+| [0x0](./_posts/03-11-2025-LOG-0x0-GENESIS.md) | The Genesis (Vision) | 03/11/2025 | ✅ |
+| [0x1](./_posts/04-11-2025-LOG-0x1-NEXUS-INIT.md) | Nexus — The First Spark | 04/11/2025 | ✅ |
+| [0x2](./_posts/02-12-2025-LOG-0x2-NEXUS-FIRST-GRIND.md) | The First Grind | 02/12/2025 | ✅ |
+| [0x3](./_posts/23-12-2025-LOG-0x3-NEXUS-RESTART.md) | The Pivot | 23/12/2025 | ✅ |
+| [0x4](./_posts/28-02-2026-LOG-0x4-PYPROBE-INIT.md) | PyProbe — Memory Introspection | 28/02/2026 | ✅ |
+| [0x5](./_posts/28-02-2026-LOG-0x5-PYPROBE-DOCS.md) | PyProbe — Cleanup | 28/02/2026 | ✅ |
+| [0x6](./_posts/01-03-2026-LOG-0x6-PYJX-INIT.md) | PyJX — The Bridge | 01/03/2026 | ✅ |
+| [0x7](./_posts/27-03-2026-LOG-0x7-PYPROBE-EXTRACTORS.md) | PyProbe — Full Type Support | 27/03/2026 | ✅ |
+| [0x8](./_posts/11-04-2026-LOG-0x8-NEXUS-RESURFACE.md) | Nexus Resurfaces | 11/04/2026 | ✅ |
 
 ---
 
