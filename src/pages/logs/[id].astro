@@ -2,7 +2,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
-const base = import.meta.env.BASE_URL;
+const base = Astro.site ? (new URL(Astro.site).pathname.endsWith('/') ? new URL(Astro.site).pathname : new URL(Astro.site).pathname + '/') : '/Project-COBALT/';
 
 export async function getStaticPaths() {
   const logs = await getCollection('logs');

@@ -21,7 +21,7 @@ export default defineConfig({
   base: "/Project-COBALT/",
 
   // Updated to your GitHub Pages URL
-  site: "https://soumyadeep-chakravarti.github.io",
+  site: "https://soumyadeep-chakravarti.github.io/Project-COBALT",
 
   srcDir: "./src",
   outDir: "./dist",

@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
-const base = import.meta.env.BASE_URL;
+const base = Astro.site ? (new URL(Astro.site).pathname.endsWith('/') ? new URL(Astro.site).pathname : new URL(Astro.site).pathname + '/') : '/Project-COBALT/';
 const logsCollection = await getCollection('logs');
 
 interface LogEntry {

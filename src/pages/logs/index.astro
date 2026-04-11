@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
-const base = import.meta.env.BASE_URL;
+const base = Astro.site ? (new URL(Astro.site).pathname.endsWith('/') ? new URL(Astro.site).pathname : new URL(Astro.site).pathname + '/') : '/Project-COBALT/';
 const logs = await getCollection('logs');
 const sortedLogs = logs.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 

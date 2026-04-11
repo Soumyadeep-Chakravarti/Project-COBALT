@@ -1,5 +1,5 @@
 ---
-const base = import.meta.env.BASE_URL;
+const base = Astro.site ? (new URL(Astro.site).pathname.endsWith('/') ? new URL(Astro.site).pathname : new URL(Astro.site).pathname + '/') : '/Project-COBALT/';
 
 interface Props {
   title: string;
