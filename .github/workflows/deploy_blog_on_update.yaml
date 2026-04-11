@@ -1,0 +1,51 @@
+name: Deploy COBALT Blog (Astro)
+
+on:
+  push:
+    branches:
+      - cobalt-blog  # This must match your branch name exactly
+  workflow_dispatch: # Allows you to run it manually from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm' # Speeds up future builds
+
+      - name: Install dependencies
+        run: npm install # or npm ci if you have a package-lock.json
+
+      - name: Build Astro
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist # Adjust this if your 'dist' is inside a subfolder
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
