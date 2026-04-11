@@ -19,7 +19,7 @@ function remarkMermaid() {
 
 export default defineConfig({
   // Set to "/" for root domain deployment (https://soumyadeep-chakravarti.github.io/)
-  base: "/",
+  base: "/Project-COBALT",
 
   // Updated to your GitHub Pages URL
   site: "https://soumyadeep-chakravarti.github.io",
